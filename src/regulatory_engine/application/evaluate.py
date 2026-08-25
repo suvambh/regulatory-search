@@ -1,6 +1,8 @@
 from dataclasses import asdict
 
-from fta import get_preferential_context
+from regulatory_engine.fta import (
+    get_preferential_context,
+)
 
 from regulatory_engine.classification.service import (
     search_and_classify,

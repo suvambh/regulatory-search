@@ -1,6 +1,9 @@
 import math
 
-from models import Status, TariffResult
+from regulatory_engine.models import (
+    Status,
+    TariffResult,
+)
 
 from regulatory_engine.repositories.tariff_repository import (
     get_tariff_item,

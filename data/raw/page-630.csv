@@ -1,0 +1,26 @@
+Code NC ,Désignation des marchandises ,Taux du droit conventionnel (%) ,Unité supplémentaire 
+1 ,2 ,3 ,4 
+8525 82 00 ,"autres, résistants aux rayonnements, mentionnés dans la note 2 de sous- positions du présent chapitre ",exemption ,p/st 
+8525 83 00 ,"autres, à vision nocturne, mentionnés dans la note 3 de sous-positions du présent chapitre ",exemption ,p/st 
+8525 89 00 ,autres ,exemption ,p/st 
+8526 ,"Appareils de radiodétection et de radiosondage (radar), appareils de radionavigation et appareils de radiotélécommande: ",,
+8526 10 00 ,Appareils de radiodétection et de radiosondage (radar) autres: ,exemption ,
+852691 ,Appareils de radionavigation: ,,
+8526 91 20 ,Récepteurs de radionavigation ,exemption ,p/st 
+8526 91 80 ,autres ,exemption ,
+8526 92 00 ,Appareils de radiotélécommande ,exemption ,
+8527 ,"Appareils récepteurs pour la radiodiffusion, même combinés, sous une même enveloppe, à un appareil d'enregistrement ou de reproduction du son ou à un appareil d'horlogerie: ",,
+,Appareils récepteurs de radiodiffusion pouvant fonctionner sans source d'énergie extérieure: ,,
+8527 12 00 ,Radiocassettes de poche ,exemption ,p/st 
+8527 13 00 ,autres appareils combinés à un appareil d'enregistrement ou de reproduction du son ,exemption ,p/st 
+8527 19 00 ,autres ,exemption ,p/st 
+,"Appareils récepteurs de radiodiffusion ne pouvant fonctionner qu'avec une source d'énergie extérieure, du type utilisé dans les véhicules automobiles: ",,
+8527 21 ,-- combinés à un appareil d'enregistrement ou de reproduction du son: ,,
+,capables de recevoir et de décoder des signaux RDS (système de décodage d'informations routières): ,,
+8527 21 20 ,à système de lecture par faisceau laser autres: ,exemption ,p/st 
+8527 21 52 ,à cassettes et à système de lecture analogique et numérique ,exemption ,p/st 
+8527 21 59 ,autres autres: ,exemption ,p/st 
+8527 21 70 ,à système de lecture par faisceau laser autres: ,14 ,p/st 
+8527 21 92 ,à cassettes et à système de lecture analogique et numérique ,14 ,p/st 
+8527 21 98 ,autres ,10 ,p/st 
+

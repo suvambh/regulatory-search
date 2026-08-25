@@ -1,0 +1,38 @@
+Code NC ,Désignation des marchandises ,Taux du droit conventionnel (%) ,Unité supplémentaire 
+1 ,2 ,3 ,4 
+8506 ,Piles et batteries de piles électriques: ,,
+8506 10 ,au bioxyde de manganèse: ,,
+,alcalines: ,,
+8506 10 11 ,Piles cylindriques ,"4,7 ",p/st 
+8506 10 18 ,autres ,"4,7 ",p/st 
+,autres: ,,
+8506 10 91 ,Piles cylindriques ,"4,7 ",p/st 
+8506 10 98 ,autres ,"4,7 ",p/st 
+8506 30 00 ,à l'oxyde de mercure ,"4,7 ",p/st 
+8506 40 00 ,à l'oxyde d'argent ,"4,7 ",p/st 
+8506 50 ,au lithium: ,,
+8506 50 10 ,Piles cylindriques ,"4,7 ",p/st 
+8506 50 30 ,Piles bouton ,"4,7 ",p/st 
+8506 50 90 ,autres ,"4,7 ",p/st 
+8506 60 00 ,à l'air-zinc ,"4,7 ",p/st 
+8506 80 ,autres piles et batteries de piles: ,,
+8506 80 05 ,"Batteries sèches au zinc-carbure d'une tension de 5,5 V ou plus mais n'excédant pas 6,5 V ",exemption ,p/st 
+8506 80 80 ,autres ,"4,7 ",p/st 
+8506 90 00 ,Parties ,"4,7 ",
+8507 ,"Accumulateurs électriques, y compris leurs séparateurs, même de forme carrée ou rectangulaire: ",,
+8507 10 ,"au plomb, des types utilisés pour le démarrage des moteurs à piston: ",,
+8507 10 20 ,fonctionnant avec électrolyte liquide ,"3,7 ",p/st 
+8507 10 80 ,autres ,"3,7 ",p/st 
+8507 20 ,autres accumulateurs au plomb: ,,
+8507 20 20 ,fonctionnant avec électrolyte liquide ,"3,7 ",ce/el 
+8507 20 80 ,autres ,"3,7 ",ce/el 
+8507 30 ,au nickel-cadmium: ,,
+8507 30 20 ,hermétiquement fermés ,"2,6 ",p/st 
+8507 30 80 ,autres ,"2,6 ",ce/el 
+8507 50 00 ,au nickel-hydrure métallique ,"2,7 ",p/st 
+8507 60 00 ,au lithium-ion ,"2,7 ",p/st 
+8507 80 00 ,autres accumulateurs ,"2,7 ",p/st 
+8507 90 ,Parties: ,,
+8507 90 30 ,Séparateurs ,"2,7 ",
+8507 90 80 ,autres ,"2,7 ",
+

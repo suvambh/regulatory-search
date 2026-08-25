@@ -1,0 +1,72 @@
+[
+  {
+    "scenario_id": 1,
+    "name": "Import standard",
+    "input": {
+      "product": "Ordinateur portable 14 pouces",
+      "export_country": "Chine",
+      "import_country": "France",
+      "goods_value_eur": 500
+    }
+  },
+  {
+    "scenario_id": 2,
+    "name": "Préférence tarifaire",
+    "input": {
+      "product": "Câbles électriques en cuivre isolés",
+      "export_country": "Maroc",
+      "import_country": "France",
+      "goods_value_eur": 10000
+    }
+  },
+  {
+    "scenario_id": 3,
+    "name": "Accord de libre-échange",
+    "input": {
+      "product": "Écran LCD moniteur 27 pouces",
+      "export_country": "Corée du Sud",
+      "import_country": "France",
+      "goods_value_eur": 300
+    }
+  },
+  {
+    "scenario_id": 4,
+    "name": "Produit réglementé",
+    "input": {
+      "product": "Oxymètre de pouls digital (mesure SpO2 et fréquence cardiaque)",
+      "export_country": "Chine",
+      "import_country": "France",
+      "goods_value_eur": 2000
+    }
+  },
+  {
+    "scenario_id": 5,
+    "name": "Produit spécialisé",
+    "input": {
+      "product": "Prothèse de hanche en titane",
+      "export_country": "Inde",
+      "import_country": "France",
+      "goods_value_eur": 15000
+    }
+  },
+  {
+    "scenario_id": 6,
+    "name": "Produit alimentaire",
+    "input": {
+      "product": "Huile d'olive vierge extra bio",
+      "export_country": "Tunisie",
+      "import_country": "France",
+      "goods_value_eur": 5000
+    }
+  },
+  {
+    "scenario_id": 7,
+    "name": "Description technique",
+    "input": {
+      "product": "Batterie lithium-ion rechargeable haute capacité pour véhicule électrique",
+      "export_country": "Chine",
+      "import_country": "France",
+      "goods_value_eur": 8000
+    }
+  }
+]

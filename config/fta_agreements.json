@@ -1,0 +1,76 @@
+{
+  "morocco": {
+    "agreement_code": "EU_MOROCCO_2000",
+    "agreement_name": "Accord d'association UE-Maroc",
+    "exporter_country": "Maroc",
+    "importer_region": "UE",
+    "importer_country": "France",
+
+    "pdf_path": "corpus/maroc.pdf",
+    "source_document": "Accord d'association UE-Maroc — JO L 70/2000",
+
+    "origin": {
+      "pages": [164],
+      "source_section": "Protocole no 4 — Annexe II",
+      "raw_dir": "data/raw/fta/morocco-origin",
+      "clean_dir": "data/cleaned/fta/morocco-origin"
+    },
+
+    "legal": {
+      "pages": [6, 11],
+      "raw_dir": "data/raw/fta/morocco-legal",
+      "clean_path": "data/cleaned/fta/morocco-legal.csv",
+      "articles": [
+        {
+          "article": "9",
+          "page": 6,
+          "section": "TITRE II — LIBRE CIRCULATION DES MARCHANDISES / CHAPITRE I — PRODUITS INDUSTRIELS"
+        },
+        {
+          "article": "29",
+          "page": 11,
+          "section": "TITRE II — LIBRE CIRCULATION DES MARCHANDISES"
+        }
+      ]
+    }
+  },
+
+  "korea": {
+    "agreement_code": "EU_KOREA_FTA",
+    "agreement_name": "Accord de libre-échange UE-Corée",
+    "exporter_country": "Corée du Sud",
+    "importer_region": "UE",
+    "importer_country": "France",
+
+    "pdf_path": "corpus/korea.pdf",
+    "source_document": "Accord de libre-échange UE-Corée — version consolidée 01.01.2023",
+
+    "origin": {
+      "pages": [1712],
+      "source_section": "Règles d'origine — Annexe II",
+      "raw_dir": "data/raw/fta/korea-origin",
+      "clean_dir": "data/cleaned/fta/korea-origin"
+    },
+
+    "legal": {
+      "pages": [7],
+      "raw_dir": "data/raw/fta/korea-legal",
+      "clean_path": "data/cleaned/fta/korea-legal.csv",
+      "articles": [
+        {
+          "article": "2.5",
+          "page": 7,
+          "section": "CHAPITRE DEUX — TRAITEMENT NATIONAL ET ACCÈS AU MARCHÉ EN CE QUI CONCERNE LES MARCHANDISES / SECTION B — ÉLIMINATION DES DROITS DE DOUANE"
+        }
+      ]
+    },
+
+    "tariff_schedule": {
+      "pages": [1203, 1204],
+      "raw_dir": "data/raw/fta/korea-tariff",
+      "clean_dir": "data/cleaned/fta/korea-tariff",
+      "source_section": "Annexe 2-A",
+      "nomenclature_version": "NC2007"
+    }
+  }
+}

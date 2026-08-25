@@ -1,0 +1,34 @@
+Code NC ,Désignation des marchandises ,Taux du droit conventionnel (%) ,Unité supplémentaire 
+1 ,2 ,3 ,4 
+8523 41 30 ,"Disques pour systèmes de lecture par faisceau laser d'une capacité d'enregistrement excédant 900 méga octets mais n'excédant pas 18 giga octets, autres qu'effaçables ",exemption ,p/st 
+8523 41 90 ,autres ,exemption ,
+8523 49 ,autres: ,,
+,Disques pour systèmes de lecture par faisceau laser: ,,
+8523 49 10 ,Disques numériques versatiles (DVD) ,exemption ,p/st 
+8523 49 20 ,autres ,exemption ,p/st 
+8523 49 90 ,autres ,exemption ,p/st 
+,Supports à semi-conducteur: ,,
+852351 ,Dispositifs de stockage rémanent des données à base de semi-conducteurs: ,,
+8523 51 10 ,non enregistrés ,exemption ,p/st 
+8523 51 90 ,autres ,exemption ,p/st 
+8523 52 00 ,«Cartes intelligentes» ,exemption ,p/st 
+8523 59 ,autres: ,,
+8523 59 10 ,non enregistrés ,exemption ,p/st 
+8523 59 90 ,autres ,exemption ,p/st 
+852380 ,autres: ,,
+8523 80 10 ,non enregistrés ,exemption ,
+8523 80 90 ,autres ,exemption ,
+8524 ,"Modules d'affichage à écran plat, même comprenant des écrans tactiles: Sans pilotes ni circuits de commande: ",,
+8524 11 00 ,à cristaux liquides ,exemption ,p/st 
+8524 12 00 ,-- à diodes émettrices de lumière organiques (OLED) ,exemption ,p/st 
+8524 19 00 ,autres ,exemption ,p/st 
+,autres: ,,
+8524 91 00 ,à cristaux liquides ,exemption ,p/st 
+8524 92 00 ,à diodes émettrices de lumière organiques (OLED) ,exemption ,p/st 
+8524 99 00 ,autres ,exemption ,p/st 
+8525 ,"Appareils d'émission pour la radiodiffusion ou la télévision, même incorporant un appareil de réception ou un appareil d'enregistrement ou de reproduction du son; caméras de télévision, appareils photographiques numériques et caméscopes: ",,
+8525 50 00 ,Appareils d'émission ,exemption ,p/st 
+8525 60 00 ,Appareils d'émission incorporant un appareil de réception ,exemption ,p/st 
+,"Cameras de télévision, appareils photographiques numériques et caméscopes: ",,
+8525 81 00 ,"Ultrarapides, mentionnés dans la note 1 de sous-positions du présent chapitre ",exemption ,p/st 
+

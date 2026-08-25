@@ -1,0 +1,25 @@
+Code NC ,Désignation des marchandises ,Taux du droit conventionnel (%) ,Unité supplémentaire 
+1 ,2 ,3 ,4 
+8527 29 00 ,autres autres: ,exemption ,p/st 
+8527 91 00 ,combinés à un appareil d'enregistrement ou de reproduction du son ,exemption ,p/st 
+8527 92 00 ,non combinés à un appareil d'enregistrement ou de reproduction du son mais combinés à un appareil d'horlogerie ,exemption ,p/st 
+8527 99 00 ,autres ,exemption ,p/st 
+8528 ,"Moniteurs et projecteurs, n'incorporant pas d'appareil de réception de télévision; appareils récepteurs de télévision, même incorporant un appareil récepteur de radiodiffusion ou un appareil d'enregistrement ou de reproduction du son ou des images: ",,
+,Moniteurs à tube cathodique: ,,
+8528 42 00 ,aptes à être connectés directement à une machine automatique de traitement de l'information du n° 8471 et conçus pour être utilisés avec celle-ci ,exemption ,p/st 
+8528 49 00 ,autres autres moniteurs: ,exemption ,p/st 
+8528 52 ,aptes à être connectés directement à une machine automatique de traitement de l'information du n° 8471 et conçus pour être utilisés avec celle-ci: ,,
+8528 52 10 ,des types utilisés exclusivement ou principalement dans un système automatique de traitement de l'information du n° 8471 ,exemption ,p/st 
+,autres: ,,
+8528 52 91 ,avec un écran à cristaux liquides (LCD) ,14 (1) ,p/st 
+8528 52 99 ,autres ,14 (¹) ,p/st 
+8528 59 00 ,autres ,14 ,p/st 
+,Projecteurs: ,,
+8528 62 00 ,aptes à être connectés directement à une machine automatique de traitement de l'information du n° 8471 et conçus pour être utilisés avec celle-ci ,exemption ,p/st 
+8528 69 ,autres: ,,
+8528 69 20 ,en monochromes ,2 ,p/st 
+8528 69 80 ,autres ,14 ,p/st 
+,"Appareils récepteurs de télévision, même incorporant un appareil récepteur de radiodiffusion ou un appareil d'enregistrement ou de reproduction du son ou des images: ",,
+852871 ,non conçus pour incorporer un dispositif d'affichage ou un écran vidéo: Récepteurs de signaux vidéophoniques (tuners): ,,
+8528711 ,Assemblages électroniques destinés à être incorporés dans une machine automatique de traitement de l'information ,exemption ,p/st 
+

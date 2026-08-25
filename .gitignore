@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Python tooling / caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# Local logs / debug
+*.log
+debug/
+
+# Temporary files
+tmp/
+temp/
+
+# Local database / Docker state
+*.db
+*.sqlite
+*.sqlite3
+postgres-data/
+pgdata/
+
+# Streamlit local secrets
+.streamlit/secrets.toml
+
+# AWS / credentials
+.aws/
+credentials
+
+# Project-generated Python cache
+src/**/__pycache__/
+pipelines/**/__pycache__/
+tests/**/__pycache__/
+
+# Optional generated artifacts
+data/evaluation/results/*.json
+
+# Keep project data/corpus tracked unless intentionally excluded later
+# corpus/
+# data/raw/
+# data/processed/

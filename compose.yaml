@@ -1,0 +1,19 @@
+services:
+  db:
+    image: pgvector/pgvector:0.8.6-pg16
+    container_name: regulatory-db
+
+    environment:
+      POSTGRES_DB: regulatory
+      POSTGRES_USER: regulatory_app
+      POSTGRES_PASSWORD: local_dev_password
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/migrations:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  postgres_data:

@@ -1,0 +1,189 @@
+DOCUMENT: korea.pdf
+SEARCH_PAGES: 5-20
+KEYWORDS: Article 2.5, Élimination des droits de douane
+MATCHES: 6
+
+=== MATCH 1 ===
+PDF_PAGE: 7
+MATCHED_KEYWORDS: Élimination des droits de douane
+CONTEXT:
+02011A0514(01) — FR — 01.01.2023 — 004.001 — 7
+SECTION B
+Élimination des droits de douane
+Article 2.5
+Élimination des droits de douane
+1.
+Sauf disposition contraire du présent accord, chaque partie supprime
+les droits de douane appliqués sur les marchandises originaires de l'autre
+partie en respectant la liste de l'annexe 2-A.
+2.
+Pour chaque marchandise, le taux de base des droits de douane,
+auquel les réductions successives doivent être appliquées en vertu du
+paragraphe 1, est celui qui figure dans les listes de l'annexe 2-A.
+3.
+Si à quelque moment que ce soit, une partie réduit le taux des
+droits de douane de la nation la plus favorisée (ci-après dénommée
+«NPF») après l'entrée en vigueur du présent accord, ledit taux s'applique
+aux échanges couverts par le présent accord si et aussi longtemps qu'il
+se situe à un niveau inférieur à celui des droits de douane calculés selon
+la liste correspondante de l'annexe 2-A.
+4.
+Trois ans après l'entrée en vigueur du présent accord, les parties
+entament une consultation, à la demande de l'une des parties, afin
+
+=== MATCH 2 ===
+PDF_PAGE: 7
+MATCHED_KEYWORDS: Article 2.5
+CONTEXT:
+02011A0514(01) — FR — 01.01.2023 — 004.001 — 7
+SECTION B
+Élimination des droits de douane
+Article 2.5
+Élimination des droits de douane
+1.
+Sauf disposition contraire du présent accord, chaque partie supprime
+les droits de douane appliqués sur les marchandises originaires de l'autre
+partie en respectant la liste de l'annexe 2-A.
+2.
+Pour chaque marchandise, le taux de base des droits de douane,
+auquel les réductions successives doivent être appliquées en vertu du
+paragraphe 1, est celui qui figure dans les listes de l'annexe 2-A.
+3.
+Si à quelque moment que ce soit, une partie réduit le taux des
+droits de douane de la nation la plus favorisée (ci-après dénommée
+«NPF») après l'entrée en vigueur du présent accord, ledit taux s'applique
+aux échanges couverts par le présent accord si et aussi longtemps qu'il
+se situe à un niveau inférieur à celui des droits de douane calculés selon
+la liste correspondante de l'annexe 2-A.
+4.
+Trois ans après l'entrée en vigueur du présent accord, les parties
+entament une consultation, à la demande de l'une des parties, afin
+d'envisager d'accélérer et d'élargir le champ de l'élimination des droits
+
+=== MATCH 3 ===
+PDF_PAGE: 7
+MATCHED_KEYWORDS: Élimination des droits de douane
+CONTEXT:
+02011A0514(01) — FR — 01.01.2023 — 004.001 — 7
+SECTION B
+Élimination des droits de douane
+Article 2.5
+Élimination des droits de douane
+1.
+Sauf disposition contraire du présent accord, chaque partie supprime
+les droits de douane appliqués sur les marchandises originaires de l'autre
+partie en respectant la liste de l'annexe 2-A.
+2.
+Pour chaque marchandise, le taux de base des droits de douane,
+auquel les réductions successives doivent être appliquées en vertu du
+paragraphe 1, est celui qui figure dans les listes de l'annexe 2-A.
+3.
+Si à quelque moment que ce soit, une partie réduit le taux des
+droits de douane de la nation la plus favorisée (ci-après dénommée
+«NPF») après l'entrée en vigueur du présent accord, ledit taux s'applique
+aux échanges couverts par le présent accord si et aussi longtemps qu'il
+se situe à un niveau inférieur à celui des droits de douane calculés selon
+la liste correspondante de l'annexe 2-A.
+4.
+Trois ans après l'entrée en vigueur du présent accord, les parties
+entament une consultation, à la demande de l'une des parties, afin
+d'envisager d'accélérer et d'élargir le champ de l'élimination des droits
+de douane sur les importations effectuées entre elles. Toute décision
+
+=== MATCH 4 ===
+PDF_PAGE: 13
+MATCHED_KEYWORDS: Élimination des droits de douane
+CONTEXT:
+02011A0514(01) — FR — 01.01.2023 — 004.001 — 13
+ii) le taux de base du droit de douane spécifié dans les listes de
+l'annexe 2-A (Élimination des droits de douane), conformément à
+l'article 2.5, paragraphe 2 (Élimination des droits de douane).
+Article 3.2
+Conditions et restrictions
+1.
+Toute partie qui ouvre une enquête au sens du paragraphe 2 en
+informe l'autre partie par écrit et consulte celle-ci le plus tôt possible
+avant l'application d'une mesure de sauvegarde bilatérale de manière à
+permettre l'examen des informations résultant de l'enquête et des
+échanges de vues sur la mesure envisagée.
+2.
+Une partie n'applique une mesure de sauvegarde bilatérale qu'à
+l'issue d'une enquête menée par ses autorités compétentes en vertu de
+l'article 3 et de l'article 4, paragraphe 2, point c), de l'accord sur les
+sauvegardes figurant à l'annexe 1A de l'accord sur l'OMC (ci-après
+l'«accord sur les sauvegardes») et, à cette fin, l'article 3 et l'article 4,
+paragraphe 2, point c), de l'accord sur les sauvegardes sont intégrés dans
+le présent accord et en font partie intégrante, mutatis mutandis.
+3.
+Lors d'une enquête au sens du paragraphe 2, la partie respecte les
+exigences énoncées à l'article 4, paragraphe 2, point a), de l'accord sur
+
+=== MATCH 5 ===
+PDF_PAGE: 13
+MATCHED_KEYWORDS: Article 2.5, Élimination des droits de douane
+CONTEXT:
+02011A0514(01) — FR — 01.01.2023 — 004.001 — 13
+ii) le taux de base du droit de douane spécifié dans les listes de
+l'annexe 2-A (Élimination des droits de douane), conformément à
+l'article 2.5, paragraphe 2 (Élimination des droits de douane).
+Article 3.2
+Conditions et restrictions
+1.
+Toute partie qui ouvre une enquête au sens du paragraphe 2 en
+informe l'autre partie par écrit et consulte celle-ci le plus tôt possible
+avant l'application d'une mesure de sauvegarde bilatérale de manière à
+permettre l'examen des informations résultant de l'enquête et des
+échanges de vues sur la mesure envisagée.
+2.
+Une partie n'applique une mesure de sauvegarde bilatérale qu'à
+l'issue d'une enquête menée par ses autorités compétentes en vertu de
+l'article 3 et de l'article 4, paragraphe 2, point c), de l'accord sur les
+sauvegardes figurant à l'annexe 1A de l'accord sur l'OMC (ci-après
+l'«accord sur les sauvegardes») et, à cette fin, l'article 3 et l'article 4,
+paragraphe 2, point c), de l'accord sur les sauvegardes sont intégrés dans
+le présent accord et en font partie intégrante, mutatis mutandis.
+3.
+Lors d'une enquête au sens du paragraphe 2, la partie respecte les
+exigences énoncées à l'article 4, paragraphe 2, point a), de l'accord sur
+les sauvegardes et, à cette fin, l'article 4, paragraphe 2, point a), de
+
+=== MATCH 6 ===
+PDF_PAGE: 16
+MATCHED_KEYWORDS: Élimination des droits de douane
+CONTEXT:
+02011A0514(01) — FR — 01.01.2023 — 004.001 — 16
+6.
+La mise en œuvre et le fonctionnement du présent article peuvent
+faire l'objet de discussions et d'un réexamen au sein du comité
+«Commerce de marchandises» visé à l'article 2.16 (Comité «Commerce
+de marchandises»).
+7.
+Les parties s'abstiennent d'appliquer ou de maintenir une mesure
+de sauvegarde dans le domaine agricole sur une marchandise agricole
+originaire:
+a) si la période définie dans les dispositions de sauvegarde en matière
+agricole de sa liste de l'annexe 3 a expiré;
+b) si la mesure augmente le droit contingentaire pour une marchandise
+soumise à un contingent tarifaire fixé à l'appendice 2-A-1 de la liste
+de l'annexe 2-A (Élimination des droits de douane).
+8.
+Toute expédition de la marchandise en question qui est en cours
+de route sur la base d'un contrat conclu avant l'institution du droit
+additionnel au titre des paragraphes 1 à 4 est exemptée de ce droit
+additionnel, étant entendu qu'elle peut être prise en compte dans le
+volume des importations de la marchandise en question pendant
+l'année suivante aux fins du déclenchement des dispositions du para­
+graphe 1 pendant ladite année.
+SECTION C
+Mesures de sauvegarde globales
+Article 3.7
+Mesures de sauvegarde globales
+1.
+Chaque partie conserve les droits et obligations résultant pour elle
+de l'article XIX du GATT de 1994 et de l'accord sur les sauvegardes.
+Sauf disposition contraire du présent article, le présent accord ne confère
+aucun droit supplémentaire ni n'impose aucune obligation nouvelle aux
+parties en ce qui concerne les mesures prises en vertu de l'article XIX
+du GATT de 1994 ou de l'accord sur les sauvegardes.
+2.
+

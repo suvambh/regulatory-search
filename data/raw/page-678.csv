@@ -1,0 +1,33 @@
+Code NC ,Désignation des marchandises ,Taux du droit conventionnel (%) ,Unité supplémentaire 
+1 ,2 ,3 ,4 
+9018 90 40 ,Appareils de diathermie ,exemption ,
+9018 90 50 ,Appareils de transfusion et de perfusion ,exemption ,
+9018 90 60 ,Instruments et appareils d'anesthésie ,exemption ,
+9018 90 75 ,Appareils pour la stimulation nerveuse ,exemption ,
+9018 90 84 ,autres ,exemption ,
+9019 ,"Appareils de mécanothérapie; appareils de massage; appareils de psychotechnie; appareils d'ozonothérapie, d'oxygénothérapie, d'aérosolthérapie, appareils respiratoires de réanimation et autres appareils de thérapie respiratoire: ",,
+9019 10 ,Appareils de mécanothérapie; appareils de massage; appareils de psychotechnie: ,,
+9019 10 10 ,Vibromasseurs électriques ,exemption ,
+9019 10 90 ,autres ,exemption ,
+9019 20 ,"Appareils d'ozonothérapie, d'oxygénothérapie, d'aérosolthérapie, appareils respiratoires de réanimation et autres appareils de thérapie respiratoire: ",,
+9019 20 10 ,"Appareils de ventilation mécanique, capables d'assurer une ventilation invasive ",exemption ,p/st 
+9019 20 20 ,"Appareils de ventilation mécanique, non invasive ",exemption ,p/st 
+9019 20 90 ,"Autres, y compris les parties et accessoires ",exemption ,
+9020 00 ,"Autres appareils respiratoires et masques à gaz, à l'exclusion des masques de protection dépourvus de mécanisme et d'élément filtrant amovible: ",,
+9020 00 10 ,- Masques à gaz ,"1,7 ",p/st 
+9020 00 90 ,"Autres, y compris les parties et accessoires ","1,7 ",
+9021 ,"Articles et appareils d'orthopédie, y compris les ceintures et bandages médico-chirurgicaux et les béquilles; attelles, gouttières et autres articles et appareils pour fractures; articles et appareils de prothèse; appareils pour faciliter l'audition aux sourds et autres appareils à tenir à la main, à porter sur la personne ou à implanter dans l'organisme, afin de compenser une déficience ou une infirmité: ",,
+9021 10 ,Articles et appareils d'orthopédie ou pour fractures: ,,
+9021 10 10 ,Articles et appareils d'orthopédie ,exemption ,
+9021 10 90 ,Articles et appareils pour fractures ,exemption ,
+,Articles et appareils de prothèse dentaire: ,,
+9021 21 ,Dents artificielles: ,,
+9021 21 10 ,en matières plastiques ,exemption ,100 p/st 
+9021 21 90 ,en autres matières ,exemption ,100 p/st 
+9021 29 00 ,autres ,exemption ,
+,autres articles et appareils de prothèse: ,,
+9021 31 00 ,Prothèses articulaires ,exemption ,
+9021 39 ,autres: ,,
+9021 39 10 ,Prothèses oculaires ,exemption ,
+9021 39 90 ,autres ,exemption ,
+

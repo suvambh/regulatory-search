@@ -1,0 +1,193 @@
+import json
+
+import boto3
+import psycopg
+
+
+DB_URL = (
+    "postgresql://regulatory_app:"
+    "local_dev_password@localhost:5433/regulatory"
+)
+
+MODEL_ID = "cohere.embed-multilingual-v3"
+
+bedrock = boto3.client(
+    "bedrock-runtime",
+    region_name="eu-west-3",
+)
+
+
+def vector_to_string(vector):
+    return "[" + ",".join(
+        str(x)
+        for x in vector
+    ) + "]"
+
+
+def build_embedding_text(
+    branch_context,
+    heading_6_description,
+    subheading_context,
+    leaf_description,
+):
+    """
+    Build a compact, discriminative description
+    for semantic search.
+
+    We intentionally exclude the very broad HS4
+    description because it is shared by many
+    sibling tariff lines and reduces retrieval
+    precision.
+    """
+
+    parts = [
+        branch_context,
+        heading_6_description,
+        subheading_context,
+        leaf_description,
+    ]
+
+    cleaned_parts = []
+
+    for part in parts:
+
+        if part is None:
+            continue
+
+        part = str(part).strip()
+
+        if not part:
+            continue
+
+        if part in cleaned_parts:
+            continue
+
+        cleaned_parts.append(
+            part
+        )
+
+    return " — ".join(
+        cleaned_parts
+    )
+
+
+def main():
+
+    with psycopg.connect(
+        DB_URL
+    ) as conn:
+
+        with conn.cursor() as cur:
+
+            cur.execute(
+                """
+                SELECT
+                    id,
+                    tariff_code,
+                    branch_context,
+                    heading_6_description,
+                    subheading_context,
+                    leaf_description
+                FROM fta_tariff_lines
+                WHERE embedding IS NULL
+                ORDER BY id
+                """
+            )
+
+            rows = cur.fetchall()
+
+            if not rows:
+                print(
+                    "Nothing to embed"
+                )
+                return
+
+            for (
+                row_id,
+                tariff_code,
+                branch_context,
+                heading_6_description,
+                subheading_context,
+                leaf_description,
+            ) in rows:
+
+                text = build_embedding_text(
+                    branch_context=(
+                        branch_context
+                    ),
+                    heading_6_description=(
+                        heading_6_description
+                    ),
+                    subheading_context=(
+                        subheading_context
+                    ),
+                    leaf_description=(
+                        leaf_description
+                    ),
+                )
+
+                if not text:
+                    print(
+                        f"Skipping "
+                        f"{tariff_code}: "
+                        f"no embedding text"
+                    )
+                    continue
+
+                response = (
+                    bedrock.invoke_model(
+                        modelId=MODEL_ID,
+                        body=json.dumps(
+                            {
+                                "texts": [
+                                    text
+                                ],
+                                "input_type":
+                                    "search_document",
+                            }
+                        ),
+                    )
+                )
+
+                body = json.loads(
+                    response[
+                        "body"
+                    ].read()
+                )
+
+                embedding = body[
+                    "embeddings"
+                ][0]
+
+                cur.execute(
+                    """
+                    UPDATE fta_tariff_lines
+                    SET embedding = %s::vector
+                    WHERE id = %s
+                    """,
+                    (
+                        vector_to_string(
+                            embedding
+                        ),
+                        row_id,
+                    ),
+                )
+
+                print(
+                    f"Embedded "
+                    f"{tariff_code}"
+                )
+
+                print(
+                    f"  {text}"
+                )
+
+        conn.commit()
+
+    print(
+        "\nFTA tariff embeddings complete."
+    )
+
+
+if __name__ == "__main__":
+    main()

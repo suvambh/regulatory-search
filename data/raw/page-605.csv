@@ -1,0 +1,27 @@
+Code NC ,Désignation des marchandises ,Taux du droit conventionnel (%) ,Unité supplémentaire 
+1 ,2 ,3 ,4 
+8471 30 00 ,"Machines automatiques de traitement de l'information, portatives, d'un poids n'excédant pas 10 kg, comportant au moins une unité centrale de traitement, un clavier et un écran ",exemption ,p/st 
+,autres machines automatiques de traitement de l'information: ,,
+8471 41 00 ,"comportant, sous une même enveloppe, au moins une unité centrale de traitement et, qu'elles soient ou non combinées, une unité d'entrée et une unité de sortie ",exemption ,p/st 
+8471 49 00 ,"autres, se présentant sous forme de systèmes ",exemption ,p/st 
+8471 50 00 ,"Unités de traitement autres que celles des n°5 847141 ou 8471 49, pouvant comporter, sous une même enveloppe, un ou deux des types d'unités suivants: unité de mémoire, unité d'entrée et unité de sortie ",exemption ,p/st 
+8471 60 ,"Unités d'entrée ou de sortie, pouvant comporter, sous la même enveloppe, des unités de mémoire: ",,
+8471 60 60 ,Claviers ,exemption ,p/st 
+8471 60 70 ,autres ,exemption ,p/st 
+847170 ,Unités de mémoire: ,,
+8471 70 20 ,Unités de mémoire centrales autres: ,exemption ,p/st 
+,Unités de mémoire à disques: ,,
+8471 70 30 ,"optiques, y compris les magnéto-optiques autres: ",exemption ,p/st 
+8471 70 50 ,Unités de mémoire à disques durs ,exemption ,p/st 
+8471 70 70 ,autres ,exemption ,p/st 
+8471 70 80 ,Unités de mémoire à bandes ,exemption ,p/st 
+8471 70 98 ,autres ,exemption ,p/st 
+8471 80 00 ,autres unités de machines automatiques de traitement de l'information ,exemption ,p/st 
+8471 90 00 ,autres ,exemption ,p/st 
+8472 ,"Autres machines et appareils de bureau (duplicateurs hectographiques ou à stencils, machines à imprimer les adresses, distributeurs automatiques de billets de banque, machines à trier, à compter ou à encartoucher les pièces de monnaie, appareils à tailler les crayons, appareils à perforer ou à agrafer, par exemple): ",,
+8472 10 00 ,Duplicateurs ,exemption ,p/st 
+8472 30 00 ,"Machines pour le triage, le pliage, la mise sous enveloppe ou sous bande du courrier, machines à ouvrir, fermer ou sceller la correspondance et machines à apposer ou à oblitérer les timbres ","2,2 ",p/st 
+847290 ,autres: ,,
+84729010 ,"Machines à trier, à compter et à encartoucher les monnaies ",exemption ,p/st 
+84729080 ,autres ,exemption ,
+

@@ -1,9 +1,10 @@
 import json
 
-from classification import resolve_classification
 from preference import evaluate_tariff_preference
 from search import search_and_classify
-
+from regulatory_engine.classification.resolution import (
+    resolve_classification,
+)
 
 def main():
     request = {

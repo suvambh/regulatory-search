@@ -1,10 +1,11 @@
 import json
-from pathlib import Path
 from dataclasses import asdict
+from pathlib import Path
 
+from fta import get_preferential_context
+from regulatory_engine.models.requests import ImportRequest
 from search import search_and_classify
 from tariff import calculate_standard_tariff
-from fta import get_preferential_context
 
 
 SCENARIOS_PATH = Path(
@@ -14,6 +15,11 @@ SCENARIOS_PATH = Path(
 OUTPUT_DIR = Path(
     "data/evaluation/results"
 )
+
+
+# ============================================================
+# Scenario utilities
+# ============================================================
 
 
 def load_scenarios():
@@ -45,6 +51,11 @@ def get_importer_country(
         or scenario_input.get("country_importer")
         or scenario_input.get("pays_importateur")
     )
+
+
+# ============================================================
+# NC candidate utilities
+# ============================================================
 
 
 def find_selected_candidate_rate(
@@ -148,6 +159,11 @@ def find_common_candidate_context(
     }
 
 
+# ============================================================
+# Preferential tariff logic
+# ============================================================
+
+
 def determine_preferential_rate(
     fta_context,
 ):
@@ -174,9 +190,9 @@ def determine_preferential_rate(
     categories such as category 5.
     """
 
-    # ----------------------------------------
+    # --------------------------------------------------------
     # 1. Product-specific tariff schedule
-    # ----------------------------------------
+    # --------------------------------------------------------
 
     tariff_schedule = fta_context.get(
         "tariff_schedule"
@@ -201,12 +217,6 @@ def determine_preferential_rate(
             )
         )
 
-        # We use the schedule only when the
-        # selected tariff line itself explicitly
-        # states that it is exempt.
-        #
-        # We do NOT infer a current rate from
-        # category 0, category 5, etc.
         if (
             base_rate_text == "exemption"
             and base_rate_pct is not None
@@ -247,9 +257,9 @@ def determine_preferential_rate(
                 },
             }
 
-    # ----------------------------------------
+    # --------------------------------------------------------
     # 2. Direct legal exemption
-    # ----------------------------------------
+    # --------------------------------------------------------
 
     legal_basis = fta_context.get(
         "legal_basis",
@@ -322,9 +332,9 @@ def build_preferential_tariff(
     ):
         return None
 
-    # ----------------------------------------
+    # --------------------------------------------------------
     # Retrieve complete FTA context
-    # ----------------------------------------
+    # --------------------------------------------------------
 
     fta_context = get_preferential_context(
         nc_code=lookup_code,
@@ -356,9 +366,9 @@ def build_preferential_tariff(
                 None,
         }
 
-    # ----------------------------------------
-    # Determine rate from supported evidence
-    # ----------------------------------------
+    # --------------------------------------------------------
+    # Determine preferential rate from supported evidence
+    # --------------------------------------------------------
 
     preferential_rule = (
         determine_preferential_rate(
@@ -406,9 +416,9 @@ def build_preferential_tariff(
                 None,
         }
 
-    # ----------------------------------------
+    # --------------------------------------------------------
     # Calculate preferential duty
-    # ----------------------------------------
+    # --------------------------------------------------------
 
     goods_value_eur = float(
         scenario_input[
@@ -442,9 +452,9 @@ def build_preferential_tariff(
         2,
     )
 
-    # ----------------------------------------
+    # --------------------------------------------------------
     # Result status
-    # ----------------------------------------
+    # --------------------------------------------------------
 
     if classification_status == "SUPPORTED":
         status = (
@@ -519,6 +529,11 @@ def build_preferential_tariff(
     }
 
 
+# ============================================================
+# Standard tariff with classification uncertainty
+# ============================================================
+
+
 def build_uncertain_standard_tariff(
     scenario_input,
     common_context,
@@ -576,20 +591,35 @@ def build_uncertain_standard_tariff(
     }
 
 
-def evaluate_scenario(
-    scenario,
+# ============================================================
+# Core engine evaluation
+# ============================================================
+
+
+def _evaluate_input(
+    scenario_input,
 ):
-    scenario_input = scenario[
-        "input"
-    ]
+    """
+    Internal engine entry point.
+
+    Uses the existing internal field names:
+
+        product
+        export_country
+        import_country
+        goods_value_eur
+
+    Public interfaces such as Streamlit should use
+    evaluate_import() instead.
+    """
 
     product = scenario_input[
         "product"
     ]
 
-    # ----------------------------------------
+    # --------------------------------------------------------
     # 1. Retrieve NC2024 candidates + classify
-    # ----------------------------------------
+    # --------------------------------------------------------
 
     search_result = search_and_classify(
         product,
@@ -607,9 +637,9 @@ def evaluate_scenario(
     tariff = None
     preferential_tariff = None
 
-    # ----------------------------------------
+    # --------------------------------------------------------
     # 2A. Exact NC classification available
-    # ----------------------------------------
+    # --------------------------------------------------------
 
     if (
         classification[
@@ -625,9 +655,9 @@ def evaluate_scenario(
             "nc_code"
         ]
 
-        # ------------------------------------
+        # ----------------------------------------------------
         # Standard NC2024 tariff
-        # ------------------------------------
+        # ----------------------------------------------------
 
         tariff_result = (
             calculate_standard_tariff(
@@ -658,9 +688,9 @@ def evaluate_scenario(
             )
         )
 
-        # ------------------------------------
+        # ----------------------------------------------------
         # Preferential tariff
-        # ------------------------------------
+        # ----------------------------------------------------
 
         if standard_rate_pct is not None:
 
@@ -694,10 +724,9 @@ def evaluate_scenario(
                 )
             )
 
-    # ----------------------------------------
-    # 2B. Exact NC uncertain, but candidates
-    #     share HS4 + standard rate
-    # ----------------------------------------
+    # --------------------------------------------------------
+    # 2B. Exact NC uncertain, but candidates share HS4 + rate
+    # --------------------------------------------------------
 
     elif (
         classification[
@@ -730,16 +759,6 @@ def evaluate_scenario(
                 )
             )
 
-            # We only know HS4 here.
-            #
-            # This remains sufficient for:
-            # - origin-rule lookup
-            # - narrowing the historical FTA
-            #   tariff schedule
-            #
-            # The historical tariff classifier
-            # still receives the original product
-            # description.
             preferential_tariff = (
                 build_preferential_tariff(
                     scenario_input=(
@@ -772,24 +791,11 @@ def evaluate_scenario(
                 )
             )
 
-    # ----------------------------------------
-    # 3. Build evaluation result
-    # ----------------------------------------
+    # --------------------------------------------------------
+    # 3. Internal engine result
+    # --------------------------------------------------------
 
     return {
-        "scenario_id":
-            scenario[
-                "scenario_id"
-            ],
-
-        "name":
-            scenario[
-                "name"
-            ],
-
-        "input":
-            scenario_input,
-
         "classification":
             classification,
 
@@ -827,6 +833,107 @@ def evaluate_scenario(
     }
 
 
+# ============================================================
+# Public application interface
+# ============================================================
+
+
+def evaluate_import(
+    request: ImportRequest,
+):
+    """
+    Public application entry point.
+
+    This contract follows the terminology used in
+    the interview problem statement.
+
+    Streamlit and any future interface should call
+    this function rather than the internal evaluator.
+    """
+
+    scenario_input = {
+        "product":
+            request.produit,
+
+        "export_country":
+            request.pays_exportateur,
+
+        "import_country":
+            request.pays_importateur,
+
+        "goods_value_eur":
+            request.valeur_marchandise_eur,
+    }
+
+    result = _evaluate_input(
+        scenario_input
+    )
+
+    return {
+        "input": {
+            "produit":
+                request.produit,
+
+            "pays_exportateur":
+                request.pays_exportateur,
+
+            "pays_importateur":
+                request.pays_importateur,
+
+            "valeur_marchandise_eur":
+                request.valeur_marchandise_eur,
+        },
+
+        **result,
+    }
+
+
+# ============================================================
+# Evaluation scenario adapter
+# ============================================================
+
+
+def evaluate_scenario(
+    scenario,
+):
+    """
+    Adapter used by the supplied seven evaluation scenarios.
+
+    The scenario files retain their existing internal format
+    so that the refactor does not change current behavior.
+    """
+
+    scenario_input = scenario[
+        "input"
+    ]
+
+    result = _evaluate_input(
+        scenario_input
+    )
+
+    return {
+        "scenario_id":
+            scenario[
+                "scenario_id"
+            ],
+
+        "name":
+            scenario[
+                "name"
+            ],
+
+        "input":
+            scenario_input,
+
+        **result,
+    }
+
+
+# ============================================================
+# Result persistence
+# ============================================================
+
+
 def save_result(
     result,
 ):
@@ -858,6 +965,11 @@ def save_result(
         )
 
     return output_path
+
+
+# ============================================================
+# Manual scenario runner
+# ============================================================
 
 
 def main():

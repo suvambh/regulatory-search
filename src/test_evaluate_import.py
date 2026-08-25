@@ -1,5 +1,9 @@
-from evaluate import evaluate_import
-from regulatory_engine.models import ImportRequest
+from regulatory_engine.application import (
+    evaluate_import,
+)
+from regulatory_engine.models import (
+    ImportRequest,
+)
 
 
 request = ImportRequest(
@@ -9,6 +13,10 @@ request = ImportRequest(
     valeur_marchandise_eur=300,
 )
 
-result = evaluate_import(request)
+result = evaluate_import(
+    request
+)
 
-print(result)
+print(
+    result
+)

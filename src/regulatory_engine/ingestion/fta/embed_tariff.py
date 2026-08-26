@@ -3,11 +3,8 @@ import json
 import boto3
 import psycopg
 
+from regulatory_engine.settings import DATABASE_URL
 
-DB_URL = (
-    "postgresql://regulatory_app:"
-    "local_dev_password@localhost:5433/regulatory"
-)
 
 MODEL_ID = "cohere.embed-multilingual-v3"
 
@@ -74,7 +71,7 @@ def build_embedding_text(
 def main():
 
     with psycopg.connect(
-        DB_URL
+        DATABASE_URL
     ) as conn:
 
         with conn.cursor() as cur:

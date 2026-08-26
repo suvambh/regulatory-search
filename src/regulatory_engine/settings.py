@@ -9,15 +9,18 @@ DATABASE_URL = os.getenv(
     ),
 )
 
+
 AWS_REGION = os.getenv(
     "AWS_REGION",
     "eu-west-3",
 )
 
+
 EMBEDDING_MODEL = os.getenv(
     "EMBEDDING_MODEL",
     "cohere.embed-multilingual-v3",
 )
+
 
 CLASSIFICATION_MODEL = os.getenv(
     "CLASSIFICATION_MODEL",

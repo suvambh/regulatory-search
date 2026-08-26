@@ -10,9 +10,22 @@ description = "EU import regulatory and tariff search engine"
 requires-python = ">=3.12"
 
 dependencies = [
+    # AWS: Bedrock + Textract
     "boto3",
+
+    # PostgreSQL / pgvector queries
     "psycopg[binary]",
+
+    # PDF extraction; `import fitz` comes from PyMuPDF
+    "PyMuPDF",
+
+    # AWS Textract helpers
+    "amazon-textract-caller",
+    "amazon-textract-prettyprinter",
+    "amazon-textract-response-parser",
 ]
+
+
 
 
 [project.optional-dependencies]
@@ -34,3 +47,7 @@ namespaces = false
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+markers = [
+    "integration: tests requiring database and AWS Bedrock access",
+]

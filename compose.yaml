@@ -1,7 +1,7 @@
 services:
+
   db:
-    image: pgvector/pgvector:0.8.6-pg16
-    container_name: regulatory-db
+    image: pgvector/pgvector:pg16
 
     environment:
       POSTGRES_DB: regulatory
@@ -13,7 +13,68 @@ services:
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./database/migrations:/docker-entrypoint-initdb.d:ro
+      - ./database/migrations/001_create_tables.sql:/docker-entrypoint-initdb.d/001_create_tables.sql:ro
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U regulatory_app -d regulatory"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "8501:8501"
+
+    environment:
+      DATABASE_URL: postgresql://regulatory_app:local_dev_password@db:5432/regulatory
+      AWS_REGION: eu-west-3
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    volumes:
+      - ~/.aws:/root/.aws:ro
+
+
+  ingestion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    profiles:
+      - ingestion
+
+    environment:
+      DATABASE_URL: postgresql://regulatory_app:local_dev_password@db:5432/regulatory
+      AWS_REGION: eu-west-3
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    volumes:
+      - ~/.aws:/root/.aws:ro
+      - ./corpus:/app/corpus:ro
+      - ./data:/app/data
+      - ./config:/app/config:ro
+
+    command:
+      [
+        "python",
+        "-m",
+        "regulatory_engine.ingestion.nc.run"
+      ]
+
 
 volumes:
   postgres_data:

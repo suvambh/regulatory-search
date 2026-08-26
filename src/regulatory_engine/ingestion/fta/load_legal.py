@@ -4,15 +4,11 @@ import argparse
 import pandas as pd
 import psycopg
 
+from regulatory_engine.settings import DATABASE_URL
+
 from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
-)
-
-
-DB_URL = (
-    "postgresql://regulatory_app:"
-    "local_dev_password@localhost:5433/regulatory"
 )
 
 
@@ -192,7 +188,7 @@ def load_agreement(
 
     return load_legal_chunks(
         csv_path=csv_path,
-        db_url=DB_URL,
+        db_url=DATABASE_URL,
     )
 
 

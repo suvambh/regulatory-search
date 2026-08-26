@@ -10,7 +10,7 @@ from textractprettyprinter.t_pretty_print import (
     get_string,
 )
 
-from fta_config import (
+from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )

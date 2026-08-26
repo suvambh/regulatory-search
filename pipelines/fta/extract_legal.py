@@ -4,7 +4,7 @@ import argparse
 import boto3
 import pymupdf
 
-from fta_config import (
+from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )

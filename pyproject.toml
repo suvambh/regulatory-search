@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "regulatory-engine"
+version = "0.1.0"
+description = "EU import regulatory and tariff search engine"
+requires-python = ">=3.12"
+
+dependencies = [
+    "boto3",
+    "psycopg[binary]",
+]
+
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+ui = [
+    "streamlit",
+]
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["regulatory_engine*"]
+namespaces = false
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

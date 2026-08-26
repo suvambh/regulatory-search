@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from pipelines.nc.clean import clean_pages
-from pipelines.nc.embed import embed_tariff_items
-from pipelines.nc.extract import extract_pages
-from pipelines.nc.load import load_csv_files
+from regulatory_engine.ingestion.nc.clean import clean_pages
+from regulatory_engine.ingestion.nc.embed import embed_tariff_items
+from regulatory_engine.ingestion.nc.extract import extract_pages
+from regulatory_engine.ingestion.nc.load import load_csv_files
 
 from regulatory_engine.settings import DATABASE_URL
 

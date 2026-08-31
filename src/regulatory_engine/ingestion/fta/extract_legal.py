@@ -1,9 +1,6 @@
 from pathlib import Path
 import argparse
 
-import boto3
-import pymupdf
-
 from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
@@ -13,14 +10,11 @@ from regulatory_engine.infrastructure.storage import (
     persist_file,
     restore_cached_file,
 )
-from regulatory_engine.settings import (
-    AWS_REGION,
+from regulatory_engine.infrastructure.textract import (
+    get_textract_client,
 )
-
-
-textract = boto3.client(
-    "textract",
-    region_name=AWS_REGION,
+from regulatory_engine.ingestion.common.pdf import (
+    render_pdf_page,
 )
 
 
@@ -28,92 +22,105 @@ def extract_page_lines(
     pdf_path: Path,
     page_number: int,
 ) -> list[dict]:
+    """
+    Extract Textract LINE blocks together with
+    their geometry.
 
-    document = pymupdf.open(
-        pdf_path
+    Geometry is deliberately preserved because
+    FTA legal pages may use two-column layouts.
+    """
+
+    image_bytes = (
+        render_pdf_page(
+            pdf_path=pdf_path,
+            page_number=page_number,
+        )
     )
 
-    try:
-
-        if (
-            page_number < 1
-            or page_number > len(document)
-        ):
-            raise ValueError(
-                f"Invalid page {page_number}. "
-                f"PDF has {len(document)} pages."
-            )
-
-        page = document[
-            page_number - 1
-        ]
-
-        pixmap = page.get_pixmap(
-            matrix=pymupdf.Matrix(
-                2,
-                2,
-            ),
-            alpha=False,
-        )
-
-        image_bytes = pixmap.tobytes(
-            "png"
-        )
-
-    finally:
-
-        document.close()
+    textract = (
+        get_textract_client()
+    )
 
     response = (
         textract.detect_document_text(
             Document={
-                "Bytes": image_bytes,
+                "Bytes":
+                    image_bytes,
             }
         )
     )
 
     lines = []
 
-    for block in response[
-        "Blocks"
-    ]:
+    for block in response.get(
+        "Blocks",
+        [],
+    ):
 
         if (
-            block["BlockType"]
+            block.get("BlockType")
             != "LINE"
         ):
             continue
 
-        bounding_box = block[
-            "Geometry"
-        ][
-            "BoundingBox"
-        ]
+        geometry = block.get(
+            "Geometry",
+            {},
+        )
+
+        bounding_box = (
+            geometry.get(
+                "BoundingBox",
+                {},
+            )
+        )
+
+        text = (
+            block.get(
+                "Text"
+            )
+            or ""
+        ).strip()
+
+        if not text:
+            continue
 
         lines.append(
             {
                 "text":
-                    block["Text"],
+                    text,
 
                 "left":
-                    bounding_box[
-                        "Left"
-                    ],
+                    float(
+                        bounding_box.get(
+                            "Left",
+                            0.0,
+                        )
+                    ),
 
                 "top":
-                    bounding_box[
-                        "Top"
-                    ],
+                    float(
+                        bounding_box.get(
+                            "Top",
+                            0.0,
+                        )
+                    ),
 
                 "width":
-                    bounding_box[
-                        "Width"
-                    ],
+                    float(
+                        bounding_box.get(
+                            "Width",
+                            0.0,
+                        )
+                    ),
 
                 "height":
-                    bounding_box[
-                        "Height"
-                    ],
+                    float(
+                        bounding_box.get(
+                            "Height",
+                            0.0,
+                        )
+                    ),
             }
         )
 
@@ -123,32 +130,55 @@ def extract_page_lines(
 def order_two_column_page(
     lines: list[dict],
 ) -> list[dict]:
+    """
+    Reconstruct a simple two-column legal page.
+
+    Lines whose left edge is in the first half
+    of the page are read first, followed by the
+    right-hand column.
+
+    This intentionally preserves the behavior
+    of the existing FTA legal extractor.
+    """
 
     left_column = []
     right_column = []
 
     for line in lines:
 
-        if line["left"] < 0.5:
+        if line[
+            "left"
+        ] < 0.5:
+
             left_column.append(
                 line
             )
+
         else:
+
             right_column.append(
                 line
             )
 
     left_column.sort(
         key=lambda line: (
-            line["top"],
-            line["left"],
+            line[
+                "top"
+            ],
+            line[
+                "left"
+            ],
         )
     )
 
     right_column.sort(
         key=lambda line: (
-            line["top"],
-            line["left"],
+            line[
+                "top"
+            ],
+            line[
+                "left"
+            ],
         )
     )
 
@@ -163,8 +193,11 @@ def lines_to_text(
 ) -> str:
 
     return "\n".join(
-        line["text"]
-        for line in lines
+        line[
+            "text"
+        ]
+        for line
+        in lines
     )
 
 
@@ -209,7 +242,7 @@ def extract_legal_pages(
     )
 
     # ----------------------------------------
-    # Determine expected output files first
+    # Determine expected output files first.
     # ----------------------------------------
 
     output_paths = {
@@ -217,11 +250,12 @@ def extract_legal_pages(
             output_dir
             / f"page-{page_number}.txt"
         )
-        for page_number in page_numbers
+        for page_number
+        in page_numbers
     }
 
     # ----------------------------------------
-    # Restore cached legal-page text
+    # Restore cached legal-page text.
     #
     # Local:
     # data/raw/...
@@ -284,8 +318,13 @@ def extract_legal_pages(
         pdf_path
     )
 
+    print(
+        f"Using FTA legal source PDF: "
+        f"{pdf_path}"
+    )
+
     # ----------------------------------------
-    # Extract only missing pages
+    # Extract only missing pages.
     # ----------------------------------------
 
     for page_number in missing_pages:

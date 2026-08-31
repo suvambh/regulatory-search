@@ -1,15 +1,6 @@
 from pathlib import Path
 import argparse
 
-import boto3
-import pymupdf
-
-from textractprettyprinter.t_pretty_print import (
-    Pretty_Print_Table_Format,
-    Textract_Pretty_Print,
-    get_string,
-)
-
 from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
@@ -19,14 +10,9 @@ from regulatory_engine.infrastructure.storage import (
     persist_file,
     restore_cached_file,
 )
-from regulatory_engine.settings import (
-    AWS_REGION,
-)
-
-
-textract = boto3.client(
-    "textract",
-    region_name=AWS_REGION,
+from regulatory_engine.ingestion.common.pdf import (
+    extract_table_csv,
+    render_pdf_page,
 )
 
 
@@ -64,7 +50,8 @@ def extract_fta_table_pages(
             output_dir
             / f"page-{page_number}.csv"
         )
-        for page_number in page_numbers
+        for page_number
+        in page_numbers
     }
 
     # ----------------------------------------
@@ -119,105 +106,75 @@ def extract_fta_table_pages(
         ]
 
     # ----------------------------------------
-    # At least one page must be extracted.
+    # At least one page requires extraction.
     #
-    # Ensure the PDF exists locally.
-    # If S3 is enabled and the local PDF
-    # is missing, storage.py downloads it.
+    # Restore the source PDF from S3 if it
+    # does not already exist locally.
     # ----------------------------------------
 
     pdf_path = ensure_local_file(
         pdf_path
     )
 
-    document = pymupdf.open(
-        pdf_path
+    print(
+        f"Using FTA source PDF: "
+        f"{pdf_path}"
     )
 
-    try:
+    # ----------------------------------------
+    # Extract only missing pages.
+    # ----------------------------------------
 
-        for page_number in missing_pages:
+    for page_number in missing_pages:
 
-            if (
-                page_number < 1
-                or page_number > len(document)
-            ):
-                raise ValueError(
-                    f"Invalid page {page_number}. "
-                    f"PDF has {len(document)} pages."
-                )
+        print(
+            f"Processing FTA table page "
+            f"{page_number}"
+        )
 
-            page = document[
-                page_number - 1
-            ]
-
-            pixmap = page.get_pixmap(
-                matrix=pymupdf.Matrix(
-                    2,
-                    2,
-                ),
-                alpha=False,
+        image_bytes = (
+            render_pdf_page(
+                pdf_path=pdf_path,
+                page_number=page_number,
             )
+        )
 
-            image_bytes = pixmap.tobytes(
-                "png"
+        print(
+            f"Image size: "
+            f"{len(image_bytes) / 1024 / 1024:.2f} MB"
+        )
+
+        csv_text = (
+            extract_table_csv(
+                image_bytes
             )
+        )
 
-            print(
-                f"Processing FTA table page "
-                f"{page_number}"
-            )
+        output_path = output_paths[
+            page_number
+        ]
 
-            response = (
-                textract.analyze_document(
-                    Document={
-                        "Bytes": image_bytes,
-                    },
-                    FeatureTypes=[
-                        "TABLES",
-                    ],
-                )
-            )
+        output_path.write_text(
+            csv_text,
+            encoding="utf-8",
+        )
 
-            csv_text = get_string(
-                textract_json=response,
-                table_format=(
-                    Pretty_Print_Table_Format.csv
-                ),
-                output_type=[
-                    Textract_Pretty_Print.TABLES
-                ],
-            )
+        print(
+            f"Saved: {output_path}"
+        )
 
-            output_path = output_paths[
-                page_number
-            ]
+        # ------------------------------------
+        # Persist extracted artifact to S3
+        # when S3 is enabled.
+        #
+        # data/raw/...
+        # →
+        # processed/raw/...
+        # ------------------------------------
 
-            output_path.write_text(
-                csv_text,
-                encoding="utf-8",
-            )
-
-            print(
-                f"Saved: {output_path}"
-            )
-
-            # --------------------------------
-            # Persist extracted artifact
-            # to S3 when S3 is enabled.
-            #
-            # data/raw/...
-            # →
-            # processed/raw/...
-            # --------------------------------
-
-            persist_file(
-                output_path
-            )
-
-    finally:
-
-        document.close()
+        persist_file(
+            output_path
+        )
 
     return [
         output_paths[
@@ -233,7 +190,10 @@ def extract_dataset(
     dataset_type: str,
 ):
 
-    if dataset_type not in TABLE_DATASET_TYPES:
+    if (
+        dataset_type
+        not in TABLE_DATASET_TYPES
+    ):
         raise ValueError(
             f"Unsupported table dataset: "
             f"{dataset_type}"
@@ -260,9 +220,11 @@ def extract_dataset(
         ]
     )
 
-    page_numbers = dataset_config[
-        "pages"
-    ]
+    page_numbers = (
+        dataset_config[
+            "pages"
+        ]
+    )
 
     output_dir = Path(
         dataset_config[
@@ -303,12 +265,19 @@ def extract_all_for_agreement(
         TABLE_DATASET_TYPES
     ):
 
-        if dataset_type not in config:
+        if (
+            dataset_type
+            not in config
+        ):
             continue
 
         extract_dataset(
-            agreement_key=agreement_key,
-            dataset_type=dataset_type,
+            agreement_key=(
+                agreement_key
+            ),
+            dataset_type=(
+                dataset_type
+            ),
         )
 
 

@@ -1,0 +1,31 @@
+Code NC ,Désignation des marchandises ,Taux du droit conventionnel (%) ,Unité supplémentaire 
+1 ,2 ,3 ,4 
+8467 29 51 ,Meuleuses d'angle ,"2,7 ",p/st 
+8467 29 53 ,Ponceuses à bandes ,"2,7 ",p/st 
+8467 29 59 ,autres ,"2,7 ",p/st 
+8467 29 70 ,Rabots ,"2,7 ",p/st 
+8467 29 80 ,"Cisailles à tailler les haies, ciseaux à pelouse et désherbeuses ","2,7 ",p/st 
+8467 29 85 ,autres ,"2,7 ",p/st 
+,autres outils: ,,
+8467 81 00 ,Tronçonneuses à chaîne ,"1,7 ",p/st 
+8467 89 00 ,autres ,"1,7 ",
+,Parties: ,,
+8467 91 00 ,de tronçonneuses à chaîne ,"1,7 ",
+8467 92 00 ,d'outils pneumatiques ,"1,7 ",
+8467 99 00 ,autres ,"1,7 ",
+8468 ,"Machines et appareils pour le brasage ou le soudage, même pouvant couper, autres que ceux du n° 8515; machines et appareils aux gaz pour la trempe superficielle: ",,
+8468 10 00 ,Chalumeaux guidés à la main ,"2,2 ",
+8468 20 00 ,autres machines et appareils aux gaz ,"2,2 ",
+8468 80 00 ,autres machines et appareils ,"2,2 ",
+8468 90 00 ,Parties ,"2,2 ",
+[8469] ,,,
+8470 ,"Machines à calculer et machines de poche permettant d'enregistrer, de reproduire et d'afficher des informations, comportant une fonction de calcul; machines comptables, machines à affranchir, à établir les tickets et machines similaires, comportant un dispositif de calcul; caisses enregistreuses: ",,
+8470 10 00 ,"Calculatrices électroniques pouvant fonctionner sans source d'énergie électrique extérieure et machines de poche comportant une fonction de calcul permettant d'enregistrer, de reproduire et d'afficher des informations ",exemption ,p/st 
+,autres machines à calculer électroniques: ,,
+8470 21 00 ,comportant un organe imprimant ,exemption ,p/st 
+8470 29 00 ,autres ,exemption ,p/st 
+8470 30 00 ,autres machines à calculer ,exemption ,p/st 
+8470 50 00 ,Caisses enregistreuses ,exemption ,p/st 
+8470 90 00 ,autres ,exemption ,p/st 
+8471 ,"Machines automatiques de traitement de l'information et leurs unités; lecteurs magnétiques ou optiques, machines de mise d'informations sur support sous forme codée et machines de traitement de ces informations, non dénommés ni compris ailleurs: ",,
+

@@ -1,0 +1,866 @@
+==========================================================================================
+MEDICAL PDF INSPECTION
+==========================================================================================
+File: corpus/medical.pdf
+Total PDF pages: 175
+
+Extracting page text...
+Pages with extractable text: 175/175
+
+
+
+##########################################################################################
+1. DOCUMENT OPENING
+##########################################################################################
+
+==========================================================================================
+PDF PAGE: 1
+REASON: document opening
+------------------------------------------------------------------------------------------
+I 
+(A ctes législatifs ) 
+RÈGLEMENTS 
+RÈGLEMENT (UE) 2017/745 DU P ARLEMENT EUR OPÉEN ET DU CO NSEIL 
+du 5 avri l 2017 
+relatif aux dispositifs médicaux, modif iant la directiv e 2001/83/CE, le règlement (CE) n
+o 
+178/2002 
+et le règlement (CE) n
+o 
+1223/2009 et abrogeant les directiv es du Conseil 90/385/CEE et 93/42/CEE 
+(T exte présentant de l'intérêt pour l'EEE) 
+LE P ARLEMENT EUR OPÉEN ET LE CON SEIL DE L'UNION EUR OPÉENNE, 
+vu le traité sur le f onctionnement de l'Un ion européenne, et notamment son ar ticle 114 et son ar ticle 168, 
+paragraphe 4, point c), 
+vu la proposition de la Commission européenne, 
+après transmission du projet d'acte législatif aux parlements nationaux, 
+vu l'avis du Comit é économique et social européen (
+1
+), 
+après consultation du Comité des régions, 
+statuant conf or mément à la procédure législative ordinaire (
+2
+), 
+considérant ce qui suit: 
+(1) Les directives du Conseil 90/385/CEE (
+3
+) et 93/42/CEE (
+4
+) f or ment le cadre rég lementaire de l'Un ion régissant les 
+dispositifs médicaux autres que les dispositifs médicaux de diagnostic in vitro. T oute f ois, il est nécessaire de 
+procéder à une révision de f ond de ces directives de manière à établir un cadre rég lementaire r igoureux, 
+transparent, prévisible et durable pour les dispositifs médicaux, qui garantisse un niveau élevé de sécur it é et de 
+prot ection de la santé tout en f av or isant l'inno vation. 
+(2) Le présent règ lement vise à garantir le bon f onctionnement du marc hé intéri eur des dispositifs médicaux, sur la 
+base d'un niveau élevé de protection de la santé pour les patients et les utilisate urs, et comp te tenu des petites et 
+mo ye nnes entrepr ises qui sont actives dans ce secteur . Dans le même tem ps, il fixe des nor mes élevées de qualité 
+et de sécur ité
+
+...[truncated; full extracted page contains 3,013 characters]
+
+==========================================================================================
+PDF PAGE: 2
+REASON: document opening
+------------------------------------------------------------------------------------------
+marc handises. En ce qui concer ne l'ar ticle 168, paragraphe 4, point c), du traité sur le f onctionnement de l'Union 
+européenne, le présent règ lement fi x e des nor mes élevées de qualité et de sécur it é applicables aux dispositifs 
+médicaux en g arantissant, entre autres, que les données issues des inve stigations cliniques sont fiables et robust es 
+et que la sécur it é des par ticipants à une inv estigation clinique est préser vée. 
+(3) Le présent règ lement n'enten d pas har moniser les dispositions régissant la remise à disposition sur le march é de 
+dispositifs médicaux après qu'ils aient déjà été mis en ser vice, dans le cadre notamment de ventes de seconde 
+main. 
+(4) Il con vient, pour améliorer la santé et la sécur ité , de renf orcer considérablement cer tains aspects essentiels de 
+l'approc he rég lementaire en vigueur , te ls que la super vision des org anismes notifiés, les procédures d'évaluation 
+de la conf or mité, les investig ations cliniques et l'évaluation clinique, la vigilance et la sur veillance du marché, et 
+d'introduire des dispositions garantissant la transparence et la traçabilit é des dispositifs médicaux. 
+(5) P our fa v or iser la converg ence de la rég lementation à l'échelle internatio nale afi n de contr ibuer à instaurer un 
+niveau élevé de sécur ité dans le monde entier et de f aciliter les échang es commerciaux, il convient de tenir 
+comp te, dans la mesure du possible, des lignes directr ices élaborées au niveau inte r national relatives aux 
+dispositifs médicaux, notamment dans le cadre du Groupe de travail sur l'har monisation mondiale (GHTF) et du 
+For um inte r national des autori té s de rég lementation des dispositifs médicaux (IMDRF) qui lui a succédé, et ce 
+notamment dans les dispositions relatives à l'identifi cation
+
+...[truncated; full extracted page contains 6,336 characters]
+
+==========================================================================================
+PDF PAGE: 3
+REASON: document opening
+------------------------------------------------------------------------------------------
+(11) La législation de l'Un ion, et en par ticulier le règ lement (CE) n
+o 
+1394/2007 du P arlement européen et du 
+Conseil (
+1
+) et la directive 2004/23/CE du P arlement européen et du Conseil (
+2
+), est lacunaire en ce qui concer ne 
+cer tains produits f abr iqués à l'aide de dér ivés de tissus ou de cellules d'or igine humaine non viables ou rendus 
+non viables. De tels produits devraient relever du c hamp d'application du présent règ lement, pour autant qu'ils 
+cor respondent à la définition d'un dispositif médical ou relèvent du présent règ lement. 
+(12) Il y a lieu que cer tains groupes de produits pour lesquels un f abr icant ne f ait valoir qu'une f onction esthétique ou 
+une autre destination non médicale mais qui sont similaires à des dispositifs médicaux de par leur f onctionnement 
+et leur profil de r isque relèvent du présent règ lement. Afin que les f abr icants puissent prouver la conf or mité de 
+ces produits, la Commission devrait adopt er des spécifi cations communes por tant au moins sur l'application de la 
+g estion des r isques et, au besoin, sur l'évaluation clinique en ce qui concer ne la sécur it é. Ces spécifications 
+communes devraient être élaborées spécifiquement pour un groupe de produits n'a yant pas de destination 
+médicale et ne devraient pas être utilisées pour évaluer la conf or mit é de dispositifs analogues a yant une 
+destination médicale. Les dispositifs a yant à la f ois une destination médicale et une destination non médicale 
+devraient respecter les exigenc es applicables aux deux types de dispositifs. 
+(13) Comme pour les produits conte nant des tissus ou cellules d'or igine humaine ou animale viables, lesquels sont 
+explicitem ent excl us des directives 90/385/CEE et 93/42/CEE et, par tant, du présent règ lement, il convient de
+
+...[truncated; full extracted page contains 6,172 characters]
+
+
+
+##########################################################################################
+2. KEYWORD / REGULATORY SECTION DISCOVERY
+##########################################################################################
+
+Pages containing relevant keywords: 86
+
+Page    1: diagnostic
+Page    2: diagnostic, implantable
+Page    4: diagnostic
+Page    6: diagnostic
+Page    7: implantable
+Page    8: implantable, organisme notifié
+Page   10: diagnostic
+Page   11: diagnostic
+Page   13: classification, hanche
+Page   14: diagnostic
+Page   15: diagnostic
+Page   16: dispositif actif, implantable
+Page   18: marquage CE
+Page   19: diagnostic
+Page   20: diagnostic
+Page   22: diagnostic
+Page   23: implantable
+Page   24: organisme notifié
+Page   26: marquage CE
+Page   27: marquage CE
+Page   31: implantable, organisme notifié
+Page   32: marquage CE
+Page   33: diagnostic, marquage CE
+Page   36: implantable
+Page   43: organisme notifié
+Page   44: organisme notifié
+Page   45: organisme notifié
+Page   46: organisme notifié
+Page   47: organisme notifié
+Page   49: classification, diagnostic
+Page   50: ANNEXE VIII, classification, implantable
+Page   51: implantable, organisme notifié
+Page   52: ANNEXE VIII, implantable, organisme notifié
+Page   53: organisme notifié
+Page   54: organisme notifié
+Page   56: organisme notifié
+Page   57: implantable
+Page   62: diagnostic
+Page   66: marquage CE
+Page   72: organisme notifié
+Page   77: organisme notifié
+Page   82: diagnostic, organisme notifié
+Page   83: classification
+Page   84: diagnostic
+Page   85: diagnostic
+Page   93: organisme notifié
+Page   96: classification
+Page   99: diagnostic
+Page  100: diagnostic
+Page  101: implantable
+Page  102: implantable
+Page  104: implantable
+Page  107: implantable
+Page  108: ANNEXE VIII
+Page  113: ANNEXE VIII
+Page  114: marquage CE
+Page  116: implantable
+Page  120: implantable
+Page  123: organisme notifié
+Page  124: organisme notifié
+Page  125: organisme notifié
+Page  126: organisme notifié
+Page  129: implantable
+Page  130: classification, organisme notifié
+Page  131: classification
+Page  134: organisme notifié
+Page  139: organisme notifié
+Page  140: ANNEXE VIII, diagnostic, dispositif actif
+Page  141: diagnostic, dispositif actif
+Page  142: dispositif actif
+Page  143: diagnostic
+Page  144: diagnostic
+Page  145: diagnostic
+Page  147: organisme notifié
+Page  148: organisme notifié
+Page  149: organisme notifié
+Page  150: organisme notifié
+Page  151: organisme notifié
+Page  152: organisme notifié
+Page  154: implantable
+Page  155: organisme notifié
+Page  156: organisme notifié
+Page  158: implantable
+Page  159: organisme notifié
+Page  168: ANNEXE VIII, classification
+Page  171: implantable
+
+
+
+##########################################################################################
+3. CANDIDATE MDR PAGES
+##########################################################################################
+
+==========================================================================================
+PDF PAGE: 50
+REASON: candidate regulatory page | keywords: ANNEXE VIII, classification, implantable
+------------------------------------------------------------------------------------------
+2. T out litige entre le fabr icant et l'organ isme notifi é concer né résultant de l'application de l'annex e VIII est soumis 
+pour décision à l'autorité compét ent e de l'État membre dans lequel le fabr icant a son sièg e social. Lorsque le fa br icant ne 
+dispose pas d'un siège social dans l'Union et n'a pas encore désigné de mandataire, l'aff aire est por tée devant l'aut or it é 
+compét ent e de l'État membre dans lequel le mandataire visé à l'annex e IX, section 2.2, deuxième alinéa, point b), der nier 
+tiret, a son sièg e social. Lorsque l'organ isme notifié concer né est établi dans un État membre autre que celui du f abr icant, 
+l'aut or it é compét ente ar rêt e sa décision après av oir consult é l'aut or ité compét ent e de l'État membre qui a désigné 
+l'organ isme notifié. 
+L'autorité compét ent e de l'État membre où le fabr icant a son siège notifie sa décision au GCDM et à la Commission. La 
+décision est communiquée sur demande. 
+3. À la demande d'un État membre, la Commission, après av oir consulté le GCDM, statue, au mo y en d'actes 
+d'exécuti on, sur les éléments suivants: 
+a) l'application de l'annexe VIII à un dispositif donnée ou à une catégo r ie ou un groupe de dispositifs en vue de 
+dét er miner la classification des dispositifs en question; 
+b) la reclassif ication d'un dispositif ou d'une catégo r ie ou d'un groupe de dispositifs pour des raisons de santé publique 
+f ondées sur de nouvelles données scientifique s, ou sur tout e inf or mation devenant disponible au cours des activités 
+de vigilance et de sur veillance du marché, par dérogation à l'annexe VIII. 
+4. La Commission peut aussi, de sa propre initiative et après av oir consult é le GCDM, statuer , au mo y en d'actes 
+d'exécuti on, sur les questions visées au paragraphe 3, points a) et b
+
+...[truncated; full extracted page contains 4,441 characters]
+
+==========================================================================================
+PDF PAGE: 52
+REASON: candidate regulatory page | keywords: ANNEXE VIII, implantable, organisme notifié
+------------------------------------------------------------------------------------------
+14. La Commission peut, au mo y en d'acte s d'exécution, préciser les modalités et les aspects procéduraux en vue de 
+l'application har monisée des procédures d'évaluation de la conf or mit é par les org anismes notifi és concer nant les points 
+suivants: 
+a) la fréquence et la base d'éch antillonnage pour l'évaluation d'un échanti llon représentatif de la documentation 
+tec hnique, conf or mément à l'annex e IX, section 2.3, troisième alinéa, et section 3.5, pour les dispositifs des classes IIa 
+et IIb, et à l'annexe XI, section 10.2 pour les dispositifs de classe IIa; 
+b) la fréquence minimale des audits sur place inopinés et des essais pratiqués sur les échantillons par les organismes 
+notifiés conf or mément à l'annex e IX, section 3.4, comp te ten u de la classe de r isque et du type de dispositif; 
+c) les essais physiques, les essais en laboratoire et les autres essais devant être réalisés par les organismes notifiés dans le 
+conte xte des essais sur les échantillons, de l'évaluation de la documentation tec hnique et de l'examen de type, 
+conf or mément à l'annexe IX, sections 3.4 et 4.3, à l'annex e X, section 3, et à l'annexe XI, section 15. 
+Les actes d'exécution visés au premier alinéa sont adopt és en conf or mit é ave c la procédure d'examen visée à l'ar ticle 114, 
+paragraphe 3. 
+Ar ticle 53 
+Inter v ention des organismes notif iés dans les procédures d'évaluation de la conf or mité 
+1. Lorsque la procédure d'évaluation de la conf or mit é prévoit l'int er vention d'un org anisme notifi é, le f abr icant peut 
+introduire une demande auprès de l'organ isme notifié de son choix, à condition que l'organisme notifi é c hoisi soit 
+désigné pour réaliser les activités d'évaluation de la conf or mité liées aux types de dispositifs concer nés. Le fabr icant ne 
+peu
+
+...[truncated; full extracted page contains 4,306 characters]
+
+==========================================================================================
+PDF PAGE: 2
+REASON: candidate regulatory page | keywords: diagnostic, implantable
+------------------------------------------------------------------------------------------
+marc handises. En ce qui concer ne l'ar ticle 168, paragraphe 4, point c), du traité sur le f onctionnement de l'Union 
+européenne, le présent règ lement fi x e des nor mes élevées de qualité et de sécur it é applicables aux dispositifs 
+médicaux en g arantissant, entre autres, que les données issues des inve stigations cliniques sont fiables et robust es 
+et que la sécur it é des par ticipants à une inv estigation clinique est préser vée. 
+(3) Le présent règ lement n'enten d pas har moniser les dispositions régissant la remise à disposition sur le march é de 
+dispositifs médicaux après qu'ils aient déjà été mis en ser vice, dans le cadre notamment de ventes de seconde 
+main. 
+(4) Il con vient, pour améliorer la santé et la sécur ité , de renf orcer considérablement cer tains aspects essentiels de 
+l'approc he rég lementaire en vigueur , te ls que la super vision des org anismes notifiés, les procédures d'évaluation 
+de la conf or mité, les investig ations cliniques et l'évaluation clinique, la vigilance et la sur veillance du marché, et 
+d'introduire des dispositions garantissant la transparence et la traçabilit é des dispositifs médicaux. 
+(5) P our fa v or iser la converg ence de la rég lementation à l'échelle internatio nale afi n de contr ibuer à instaurer un 
+niveau élevé de sécur ité dans le monde entier et de f aciliter les échang es commerciaux, il convient de tenir 
+comp te, dans la mesure du possible, des lignes directr ices élaborées au niveau inte r national relatives aux 
+dispositifs médicaux, notamment dans le cadre du Groupe de travail sur l'har monisation mondiale (GHTF) et du 
+For um inte r national des autori té s de rég lementation des dispositifs médicaux (IMDRF) qui lui a succédé, et ce 
+notamment dans les dispositions relatives à l'identifi cation
+
+...[truncated; full extracted page contains 6,336 characters]
+
+==========================================================================================
+PDF PAGE: 7
+REASON: candidate regulatory page | keywords: implantable
+------------------------------------------------------------------------------------------
+cer tificats, aux inv estigat ions cliniques, à la vigilance et à la sur veillance du marché. La base de données devrait 
+per mettre d'accroître la transparence g énérale, notamment grâce à un meilleur accès à l'inf or mation pour le 
+public et les profe ssionnels de la santé , d'évite r les oblig ations de notifi cation multiples, de renf orcer la 
+coordination entre les États membres et de rationaliser et de facilit er l'éc hange d'inf or mations entre les opérateurs 
+économiques, les org anismes notifi és ou les promot eurs et les États membres, ainsi qu'entre les États membres et 
+entre eux et la Commission. Étant donné que, sur le marc hé intérieur , cette démarch e ne peut être menée 
+efficacement qu'à l'échelle de l'Un ion, la Commission devrait ét offer et gé rer la base de données européenne sur 
+les dispositifs médicaux instituée par la décision 2010/227/UE de la Commission (
+1
+). 
+(45) Afin de f aciliter le f onctionnement d'Eudamed, une nomenclature des dispositifs médicaux qui soit inte r nationa ­
+lement reconnue devrait être mise gratuit ement à la disposition des fabr icants et des autres personnes physiques 
+ou morales qui sont ten ues par le présent règ lement d'utiliser cett e nomenclature. En outre, cette nomenclature 
+devrait ég alement être mise à disposition gratuitement, dans la mesure où cela est raisonnablement possible, aux 
+autres int er venants. 
+(46) Il convie nt que les systèmes électroniques d'Eudamed relatifs aux dispositifs présents sur le marc hé, aux 
+opérat eurs économiques concer nés et aux cer tificats per mettent au public d'être bien inf or mé des dispositifs 
+présents sur le marc hé de l'Un ion. Le système électronique relatif aux investig ations cliniques devrait ser vir d'outil 
+de coopération entre les États membres et per me
+
+...[truncated; full extracted page contains 6,180 characters]
+
+==========================================================================================
+PDF PAGE: 8
+REASON: candidate regulatory page | keywords: implantable, organisme notifié
+------------------------------------------------------------------------------------------
+(53) Afin que la sur veillance des org anismes notifi és exercé e par les autori tés nationales soit plus transparente, les 
+autori té s responsables des org anismes notifi és devraient publier des inf or mations sur les mesures nationales 
+régissant l'évaluation, la désignation et le contrôle des organismes notifiés. Conf or mément aux bonnes pratiques 
+administratives, ces autor it és devraient te nir ces inf or mations à jour , en par ticulier pour prendre en comp te les 
+modifications per tinentes, marquantes ou substantielles appor tées aux procédures en question. 
+(54) L'État membre dans lequel est établi un org anisme notifié devrait être responsable du respect des exigenc es du 
+présent règ lement pour ce qui concer ne cet organisme notifié. 
+(55) Com pt e tenu, en par ticulier , de la responsabilit é qui leur incombe en matière d'organisation et de f our niture des 
+ser vices de santé et des soins médicaux, les États membres devraient être autori sés à im poser aux organismes 
+notifiés désignés pour évaluer la conf or mité des dispositifs et qui sont établis sur leur terr itoire, des exigenc es 
+supplémentaires concer nant les questions qui ne sont pas régies par le présent règ lement. T oute exigenc e supplé ­
+mentaire de ce type ne saurait av oir une incidence sur des te xtes législatifs hor izontaux de l'Un ion plus 
+spécifiques concer nant les org anismes notifiés et l'égali té de traitement desdits orga nismes. 
+(56) P our les dispositifs implantables de classe III et les dispositifs actifs de classe IIb destinés à administrer des 
+médicaments dans l'orga nisme et/ou à les en retirer , les organismes notifiés devraient, excep té dans cer tains cas, 
+être ten us de demander à des groupes d'exper ts de contrôler leur rappor t d'évaluation sur l'évaluation cl
+
+...[truncated; full extracted page contains 6,015 characters]
+
+==========================================================================================
+PDF PAGE: 16
+REASON: candidate regulatory page | keywords: dispositif actif, implantable
+------------------------------------------------------------------------------------------
+2) «accessoire de dispositif médical», tout ar ticle qui, sans être lui-même un dispositif médical, est destiné par son 
+fabr icant à être utilisé ave c un ou plusieurs dispositifs médicaux donnés pour per mettre une utilisation de ce ou ces 
+der niers conf or me à sa ou leur destination ou pour contr ibuer spécifiquem ent et directement à la f onction médicale 
+du ou des dispositifs médicaux selon sa ou leur destination; 
+3) «dispositif sur mesure», tout dispositif f abr iqué expressément suivant la prescr ipt ion écr ite de tout e personne 
+habilitée par la législation nationale en ver tu de ses qualifi cations professionnelles, indiquant, sous sa responsabilité, 
+les caract ér istiques de concep tion spécifiques, et destiné à n'être utilisé que pour un patient déter miné et excl usi ­
+vement en réponse aux besoins et à l'état de santé de ce patient. 
+En revanc he, ne sont pas considérés comme des dispositifs sur mesure les dispositifs f abr iqués en sér ie qui 
+nécessitent une adap tation pour répondre aux exigences par ticulières de tout utilisateur profess ionnel, ni les 
+dispositifs qui sont produits en sér ie par des procédés de f abr ication industr iels suivant les prescr iptions écr ite s de 
+tout e personne habilité e; 
+4) «dispositif actif», tout dispositif dont le f onctionnement dépend d'une source d'énergie autre que celle g énérée par le 
+cor ps humain à cett e fi n ou par la pesante ur et agissant par modifi cation de la densité de cett e énergie ou par 
+conversion de celle-ci. Les dispositifs destinés à la transmission d'énergie, de substances ou d'autres éléments, sans 
+modifi cation significative, entre un dispositif actif et le patient ne sont pas réput és être des dispositifs actifs. 
+Les logiciels sont aussi réputés être des dispositifs actifs; 
+5
+
+...[truncated; full extracted page contains 4,730 characters]
+
+==========================================================================================
+PDF PAGE: 23
+REASON: candidate regulatory page | keywords: implantable
+------------------------------------------------------------------------------------------
+Ar ticle 9 
+Spécif ications communes 
+1. Sans préjudice de l'ar ticle 1
+er
+, paragraphe 2, et de l'ar ticle 17, paragraphe 5, et du délai qui est fixé dans lesdite s 
+dispositions, la Commission, après av oir consult é le GCDM, peut, au mo y en d'actes d'exécution, adop ter des spécifi ­
+cations communes, lorsqu'il n'existe pas de nor mes har monisées, lorsque les nor mes har monisées applicables ne 
+suffi sent pas, ou lorsqu'il y a lieu de répondre à des préoccupations de santé publique, en ce qui concer ne les exigenc es 
+gé nérales en matière de sécur it é et de perf or mances énoncées à l'annex e I, la documentation tec hnique prévue aux 
+annexe s II et III, l'évaluation clinique et SCA C prévus à l'annexe XIV ou les exigences relatives aux inv estigations 
+cliniques énoncées à l'annex e XV . Ces actes d'exécution sont adopt és en conf or mité av ec la procédure d'examen visée à 
+l'ar ticle 114, paragraphe 3. 
+2. Les dispositifs conf or mes aux spécifi cations communes visées au paragraphe 1 sont présumés conf or mes aux 
+exigenc es du présent règ lement relevant de ces spécifications ou de par ties per tinentes de celles-ci. 
+3. Les f abr icants se conf or ment aux spécifi cations communes visées au paragraphe 1 à moins qu'ils puissent dûment 
+justifier av oir adopt é des solutions qui garantissent un niveau de sécur it é et de performa nces au moins équivalent à celui 
+prévu par ces spécifi cations. 
+4. Nonobstant le paragraphe 3, les f abr icants des produits énumérés à l'annexe XVI se conf or ment aux spécif ications 
+communes per tinentes pour ces produits. 
+Ar ticle 10 
+Obligations générales des fabr icants 
+1. Lorsqu'ils mettent leurs dispositifs sur le marché ou en ser vice, les f abr icants veillent à ce que ceux-ci aient été 
+conçus et f abr iqués conf or 
+
+...[truncated; full extracted page contains 4,583 characters]
+
+==========================================================================================
+PDF PAGE: 31
+REASON: candidate regulatory page | keywords: implantable, organisme notifié
+------------------------------------------------------------------------------------------
+Les États membres notifien t à la Commission et aux autres États membres les dispositions nationales introduite s en ver tu 
+du présent paragraphe et les raisons de leur introduction. La Commission rend ces inf or mations publiques. 
+4. Les États membres peuvent c hoisir d'appliquer les dispositions visées au paragraphe 3 également en ce qui 
+concer ne les dispositifs à usag e unique qui sont retrait és par une entrepr ise de retrait ement exte r ne à la demande d'un 
+établissement de santé, pour autant que le dispositif retraité soit restitué dans sa totalit é à cet établissement de santé et 
+que l'entrepr ise de retrait ement exte r ne se conf or me aux exigenc es visées au paragraphe 3, points a) et b). 
+5. La Commission adopt e, conf or mément à l'ar ticle 9, paragraphe 1, les spécifications communes nécessaires visées 
+au paragraphe 3, point b), au plus tard le 26 mai 2020. Ces spécifications communes sont conf or mes aux données 
+scientifique s les plus récentes et por te nt sur l'application des exige nces g énérales en matière de sécur it é et de 
+performa nces énoncées dans le présent règ lement. Si les spécifi cations communes ne sont pas adopt ées au plus tard le 
+26 mai 2020, le retrait ement s'effe ctue conf or mément à tout es nor mes har monisées et dispositions nationales 
+per tinentes qui couvrent les aspects mentionnés au paragraphe 3, point b). La conf or mité av ec les spécifications 
+communes ou, en l'absence de spécifi cations communes, av ec tout es nor mes har monisées et dispositions nationales 
+per tinentes, est cer tif iée par un organisme notifié. 
+6. Seuls les dispositifs à usage unique qui ont été mis sur le marc hé conf or mément au présent règ lement ou av ant le 
+26 mai 2020 conf or mément à la directive 93/42/CEE peuvent être retrait és
+
+...[truncated; full extracted page contains 4,397 characters]
+
+==========================================================================================
+PDF PAGE: 36
+REASON: candidate regulatory page | keywords: implantable
+------------------------------------------------------------------------------------------
+8. Les opérat eurs économiques enregistrent et conser vent, de préféren ce par des mo yens électroniques, l'IUD des 
+dispositifs qu'ils ont f our nis ou qu'on leur a f our nis, si ces dispositifs f ont par tie: 
+— des dispositifs imp lantables de classe III, 
+— des dispositifs et caté gor ies ou groupes de dispositifs déter minés par un acte adopt é conf or mément au 
+paragraphe 11, point a). 
+9. Les établissements de santé enregistrent et conser vent, de préféren ce par des mo yens électroniques, l'IUD des 
+dispositifs qu'ils ont f our nis ou qu'on leur a f our nis, si ces dispositifs f ont par tie des dispositifs implantables de classe III. 
+P our les dispositifs autres que les dispositifs implantables de classe III, les États membres encourag ent les établissements 
+de santé à enregistrer et conser ver , de préf érence par des mo ye ns électroniques, l'IUD des dispositifs qu'on leur a f our nis, 
+et peuvent exiger qu'ils le fassent. 
+Les États membres encourag ent les profess ionnels de la santé à enregistrer et conser ver , de préfé rence par des mo yens 
+électroniques, l'IUD des dispositifs qu'on leur a f our nis, et peuvent exiger qu'ils le fassent. 
+10. La Commission est habilitée à adopt er des actes délégués conf or mément à l'ar ticle 115: 
+a) pour modifier la liste des inf or mations établie à l'annex e VI, par tie B, eu éga rd aux progrès tec hniques; et 
+b) pour modifier l'annex e VI eu éga rd aux av ancées et aux progrès tec hniques inter venus sur le plan intern ational dans 
+le domaine de l'identification unique des dispositifs. 
+11. La Commission peut, au mo y en d'actes d'exécution, préciser les modalités et les aspects procéduraux du système 
+IUD en vue d'assurer son application har monisée pour ce qui concer ne les points suivants: 
+a) la dét er mina
+
+...[truncated; full extracted page contains 4,046 characters]
+
+==========================================================================================
+PDF PAGE: 51
+REASON: candidate regulatory page | keywords: implantable, organisme notifié
+------------------------------------------------------------------------------------------
+5. Lorsque cela est justif ié par l'utilisation, dans d'autres dispositifs implantables de classe IIb, de te chnologies 
+éprouvées similaires à celles utilisées dans les dispositifs exem pt és énumérés au paragraphe 4, deuxième alinéa, du 
+présent ar ticle, ou afin de proté ger la santé et la sécur it é des patients, des utilisat eurs ou d'autres personnes ou encore 
+comp te tenu d'autres aspects de la santé publique, la Commission est habilité e à adop ter des actes délégués 
+conf or mément à l'ar ticle 115 pour modifier ladit e list e, en y ajoutant ou en en retirant d'autres types de dispositifs 
+im plantables de classe IIb. 
+6. Les fa br icants de dispositifs de classe IIa, autres que des dispositifs sur mesure ou les dispositifs faisant l'objet d'une 
+inv estigation, sont soumis à une procédure d'évaluation de la conf or mité conf or mément à l'annex e IX, c hapitres I et III, 
+av ec évaluation de la documentation tec hnique visée à la section 4 de ladit e annexe concer nant au moins un dispositif 
+représentatif pour c haque catégo r ie de dispositifs. 
+Le fabr icant peut aussi choisir d'établir la documentation tec hnique prévue aux annexes II et III, associée à une 
+évaluation de la conf or mit é conf or mément à l'annex e XI, section 10 ou 18. L'évaluation de la documentation te chnique 
+s'applique pour au moins un dispositif représentatif pour chaque catégor ie de dispositifs. 
+7. Les f abr icants de dispositifs de classe I, autres que des dispositifs sur mesure ou les dispositifs faisant l'objet d'une 
+inv estigation, atte stent la conf or mit é de leurs produits en établissant la déclaration de conf or mité UE visée à l'ar ticle 19, 
+après av oir établi la documentation tec hnique prévue aux annex es II et III. Si ces dispositifs sont mis sur le marc hé à 
+l'
+
+...[truncated; full extracted page contains 5,174 characters]
+
+==========================================================================================
+PDF PAGE: 57
+REASON: candidate regulatory page | keywords: implantable
+------------------------------------------------------------------------------------------
+7. Les cas dans lesquels le paragraphe 4 n'est pas appliqué en ver tu du paragraphe 6 sont justif iés par le f abr icant 
+dans le rappor t sur l'évaluation clinique et par l'organ isme notifié dans le rappor t d'évaluation sur l'évaluation clinique. 
+8. Lorsque cela est justifié par l'utilisation, dans d'autres dispositifs, de tec hnologies éprouvées similaires à celles 
+utilisées dans les dispositifs exe mp té s énumérés au paragraphe 6, point b), du présent ar ticle, ou afi n de proté ger la santé 
+et la sécur it é des patients, des utilisateurs ou d'autres personnes ou encore comp te tenu d'autres aspects de la santé 
+publique, la Commission est habilité e à adop ter des actes délégués conf or mément à l'ar ticle 115 pour modifi er la list e 
+des dispositifs exem pt és visés à l'ar ticle 52, paragraphe 4, deuxième alinéa, et au paragraphe 6, point b), du présent 
+ar ticle, en y aj outant ou en en retirant d'autres types de dispositifs implantables ou de classe III. 
+9. Dans le cas des produits n'a yant pas de destination médicale prévue énumérés à l'annexe XVI, l'obligation de 
+démontrer l'existence d'un bénéfi ce clinique conf or mément au présent c hapitre et aux annexe s XIV et XV s'entend 
+comme une oblig ation de démontrer la performa nce du dispositif. Les évaluations cliniques de ces produits sont f ondées 
+sur des données per tinentes concer nant la sécur it é, y compris des données issues de la sur veillance après commerciali ­
+sation, du SCA C, et, le cas échéa nt, d'investig ations cliniques spécifi ques. Des investig ations cliniques sont conduites 
+pour ces produits, sauf si la pr ise en comp te des données cliniques existant es pro venant d'un dispositif médical analogue 
+est dûment justif iée. 
+10. Sans préjudice du paragraphe 4, lorsque la conf or mit
+
+...[truncated; full extracted page contains 5,059 characters]
+
+==========================================================================================
+PDF PAGE: 101
+REASON: candidate regulatory page | keywords: implantable
+------------------------------------------------------------------------------------------
+17.3. Les logiciels visés à la présent e section qui sont destinés à être utilisés en combinaison av ec des platef or mes 
+inf or matiques mobiles sont conçus et fabr iqués en tenant comp te des caractér istiques spécifi ques de la 
+platef or me mobile (par exem ple, taille et rappor t de contraste de l'écran) et des fact eurs externes liés à leur 
+utilisation (var iation du niveau sonore ou de la luminosit é dans l'environnement). 
+17.4. Les f abr icants énoncent les exigenc es minimales concer nant le matér iel inf or matique, les caractér istiques des 
+réseaux inf or matiques et les mesures de sécur ité inf or matique, y compris la prot ection contre l'accès non 
+autori sé, qui sont nécessaires pour f aire f onctionner le logiciel comme prévu. 
+18. Dispositifs actifs et dispositifs raccordés à des dispositifs actifs 
+18.1. P our les dispositifs actifs non im plantables, en condition de premier défaut, des mo ye ns adéquats sont adop tés 
+pour éliminer ou réduire autant que possible les r isques qui en résultent. 
+18.2. Les dispositifs pour lesquels la sécur ité des patients dépend d'une source d'énergie inte r ne sont munis d'un 
+mo y en de vér if ication de l'état de celle-ci et compo r ten t une mise en garde ou une indication appropr iée au cas 
+où l'alimentation en énergie devient cr itique. A u besoin, cette mise en garde ou indication inter vient av ant que 
+l'alimentation en énergie ne devienne cr itique. 
+18.3. Les dispositifs pour lesquels la sécur it é des patients dépend d'une source d'énergie extern e sont équipés d'un 
+système d'alar me signalant tout e déf aillance de celle-ci. 
+18.4. Les dispositifs destinés à sur veiller un ou plusieurs paramètres cliniques d'un patient sont munis de systèmes 
+d'alar me appropr iés per mettant de prévenir l'utilisat e
+
+...[truncated; full extracted page contains 4,273 characters]
+
+==========================================================================================
+PDF PAGE: 102
+REASON: candidate regulatory page | keywords: implantable
+------------------------------------------------------------------------------------------
+19.3. Les dispositifs implantables actifs et, le cas échéant, leurs composants sont identif iables de f açon à rendre 
+possible tout e action appropr iée s'a vérant nécessaire à la suite de la découver te d'un r isque potentiel lié aux 
+dispositifs ou à leurs composants. 
+19.4. Les dispositifs implantables actifs compor te nt un code per mettant l'identifi cation univoque du dispositif 
+(notamment le type de dispositif et l'année de f abr ication) et du fab r icant ; ce code peut être dét ecté, le cas 
+échéant, sans devoir recour ir à une inter vention c hir urgicale. 
+20. Protection contre les r isques mécaniques et ther miques 
+20.1. Les dispositifs sont conçus et f abr iqués de manière à proté ger le patient et l'utilisateur contre les r isques 
+mécaniques liés, par exem ple, à la résistance au mouvement, à l'instabilité et aux pièces mobiles. 
+20.2. Les dispositifs sont conçus et fabr iqués de manière à réduire au minimum les r isques résultant des vibrations 
+produites par les dispositifs, comp te ten u du progrès tec hnique et des mo y ens disponibles d'atténuation des 
+vibrations, notamment à la source, sauf si les vibrations f ont par tie des performa nces prévues. 
+20.3. Les dispositifs sont conçus et fab r iqués de manière à réduire au minimum les r isques résultant des émissions 
+sonores, comp te tenu du progrès te chnique et des mo ye ns disponibles de réduction du br uit, notamment à la 
+source, sauf si les émissions sonores f ont par tie des perf or mances prévues. 
+20.4. Les term inaux et les systèmes de raccordement à des sources d'électr icité, de g az et d'énergie hydraulique ou 
+pneumatique qui doivent être manipulés par l'utilisateur ou d'autres personnes, sont conçus et constr uits de 
+manière à réduire au minimum tous les r isques possibles. 
+20.5.
+
+...[truncated; full extracted page contains 4,459 characters]
+
+==========================================================================================
+PDF PAGE: 104
+REASON: candidate regulatory page | keywords: implantable
+------------------------------------------------------------------------------------------
+23.2. Inf or mations fi gurant sur l'étiquette 
+L'étiquette compo r te tout es les inf or mations suivantes : 
+a) le nom ou la dénomination commerciale du dispositif; 
+b) les données str ictement nécessaires pour per mettre à l'utilisateur d'identif ier le dispositif et de déter miner le 
+contenu du conditionnement et, si elle n'est pas manifest e pour l'utilisat eur , la destination du dispositif; 
+c) le nom, la raison sociale ou la marque déposée du f abr icant, ainsi que l'adresse de son siège social; 
+d) si le f abr icant a son sièg e social en dehors de l'Un ion, le nom et l'adresse du siège social du mandataire; 
+e) le cas échéant, une indication précisant que sont conte nus ou intégrés dans le dispositif: 
+— un médicament, y compris un dér ivé de sang ou de plasma d'or igine humaine, ou 
+— des tissus ou cellules d'or igine humaine ou leurs dér ivés, ou 
+— des tissus ou cellules d'or igine animale ou leurs dér ivés, visés dans le règ lement (UE) n
+o 
+722/2012; 
+f) le cas échéant, des inf or mations étiquet ées conf or mément à la section 10.4.5; 
+g) le numéro de lot ou le numéro de sér ie du dispositif précédé, selon le cas, par la mention «NUMÉR O DE 
+LOT» ou «NUMÉR O DE SÉRIE» ou par un symbole équivalent ; 
+h) le suppor t d'IUD visé à l'ar ticle 27, paragraphe 4, et à l'annex e VII, par tie C; 
+i) une indication univoque de la date limite d'utilisation ou d'im plantation du dispositif en tout e sécur it é, 
+expr imée au moins par l'année et le mois, s'il y a lieu; 
+j) en l'absence d'une indication de la dat e jusqu'à laquelle le dispositif peut être utilisé en tout e sécur ité , la dat e 
+de f abr ication. Cette dat e peut être intégrée dans le numéro de lot ou le numéro de sér ie, à condition d'être 
+clairement identifiable; 
+k) une indication de tout e condit
+
+...[truncated; full extracted page contains 4,160 characters]
+
+==========================================================================================
+PDF PAGE: 107
+REASON: candidate regulatory page | keywords: implantable
+------------------------------------------------------------------------------------------
+t) dans le cas des dispositifs qui sont composés de substances ou de combinaisons de substances qui sont 
+destinées à être introduite s dans le cor ps humain et qui sont absorbées par le cor ps humain ou dispersées 
+localement dans celui-ci, les mises en garde et précautions, le cas échéant, liées au prof il gé néral d'inte ­
+raction entre le dispositif et les produits de son métabolisme et d'autres dispositifs, médicaments et 
+substances, ainsi que les contre-indications, les effe ts secondaires indésirables et les r isques liés au 
+surdosage ; 
+u) dans le cas des dispositifs implantables, les inf or mations quantitatives et qualitatives général es sur les 
+matér iaux et substances aux quels les patients sont susceptibles d'être exposés; 
+v) les mises en garde ou les précautions requises pour f av or iser une élimination sûre du dispositif, de ses 
+accessoires et des consommables ave c lesquels il est utilisé, le cas échéant. Ces inf or mations por ten t 
+notamment, s'il y a lieu: 
+— sur les r isques d'inf ection et les r isques microbiens dus par exem ple à des explants, des aiguilles ou un 
+équipement chir urgical contaminés par des substances d'or igine humaine pote ntiellement infec tieuses, 
+et 
+— sur les r isques phy siques pro venant, par exem ple, d'objets piquants et coupants. 
+Si, conf or mément à la section 23.1, point d), aucune notice d'utilisation n'est requise, ces inf or mations sont 
+f our nies à l'utilisat eur sur demande; 
+w) pour les dispositifs destinés à être utilisés par des profan es, les circonstances dans lesquelles l'utilisat eur 
+devrait consulter un professionnel de la santé; 
+x) pour les dispositifs relevant du présent règ lement en application de l'ar ticle 1
+er
+, paragraphe 2, des 
+inf or mations concer nant l'absence de bénéfic e cliniq
+
+...[truncated; full extracted page contains 2,948 characters]
+
+
+
+##########################################################################################
+4. EVENLY SPACED PDF SAMPLE
+##########################################################################################
+
+==========================================================================================
+PDF PAGE: 1
+REASON: evenly spaced sample
+------------------------------------------------------------------------------------------
+I 
+(A ctes législatifs ) 
+RÈGLEMENTS 
+RÈGLEMENT (UE) 2017/745 DU P ARLEMENT EUR OPÉEN ET DU CO NSEIL 
+du 5 avri l 2017 
+relatif aux dispositifs médicaux, modif iant la directiv e 2001/83/CE, le règlement (CE) n
+o 
+178/2002 
+et le règlement (CE) n
+o 
+1223/2009 et abrogeant les directiv es du Conseil 90/385/CEE et 93/42/CEE 
+(T exte présentant de l'intérêt pour l'EEE) 
+LE P ARLEMENT EUR OPÉEN ET LE CON SEIL DE L'UNION EUR OPÉENNE, 
+vu le traité sur le f onctionnement de l'Un ion européenne, et notamment son ar ticle 114 et son ar ticle 168, 
+paragraphe 4, point c), 
+vu la proposition de la Commission européenne, 
+après transmission du projet d'acte législatif aux parlements nationaux, 
+vu l'avis du Comit é économique et social européen (
+1
+), 
+après consultation du Comité des régions, 
+statuant conf or mément à la procédure législative ordinaire (
+2
+), 
+considérant ce qui suit: 
+(1) Les directives du Conseil 90/385/CEE (
+3
+) et 93/42/CEE (
+4
+) f or ment le cadre rég lementaire de l'Un ion régissant les 
+dispositifs médicaux autres que les dispositifs médicaux de diagnostic in vitro. T oute f ois, il est nécessaire de 
+procéder à une révision de f ond de ces directives de manière à établir un cadre rég lementaire r igoureux, 
+transparent, prévisible et durable pour les dispositifs médicaux, qui garantisse un niveau élevé de sécur it é et de 
+prot ection de la santé tout en f av or isant l'inno vation. 
+(2) Le présent règ lement vise à garantir le bon f onctionnement du marc hé intéri eur des dispositifs médicaux, sur la 
+base d'un niveau élevé de protection de la santé pour les patients et les utilisate urs, et comp te tenu des petites et 
+mo ye nnes entrepr ises qui sont actives dans ce secteur . Dans le même tem ps, il fixe des nor mes élevées de qualité 
+et de sécur ité
+
+...[truncated; full extracted page contains 3,013 characters]
+
+==========================================================================================
+PDF PAGE: 26
+REASON: evenly spaced sample
+------------------------------------------------------------------------------------------
+d) à la demande d'une autori té compé tent e, lui communiquer tout es les inf or mations et tous les documents nécessaires 
+à la démonstration de la conf or mité d'un dispositif, dans une langue officielle de l'Un ion définie par l'État membres 
+concer né; 
+e) transmettre au fabr icant tout e demande d'échanti llons ou d'accès à un dispositif fa ite par une autor it é compét ent e de 
+l'État membre dans lequel le mandataire a son siège social, et vér ifier que l'autorité compét ente reçoive les 
+écha ntillons ou ait accès au dispositif; 
+f) coopérer avec les autorités compé tent es à tout e mesure préventive ou cor rective pr ise en vue d'éliminer ou, si ce n'est 
+pas possible, d'att énuer les r isques présent és par des dispositifs; 
+g) inf or mer immédiate ment le f abr icant des réclamations et signalements de profess ionnels de la santé, de patients et 
+d'utilisate urs relatifs à des incidents supposés liés à un dispositif relevant de son mandat ; 
+h) mettre fi n au mandat si le f abr icant ne respecte pas les oblig ations qui lui incombent en ver tu du présent règ lement. 
+4. Le mandat visé au paragraphe 3 du présent ar ticle ne délègue pas les oblig ations du fab r icant prévues par 
+l'ar ticle 10, paragraphes 1, 2, 3, 4, 6, 7, 9, 10, 11 et 12. 
+5. Sans préjudice du paragraphe 4 du présent ar ticle, lorsque le f abr icant n'est pas établi dans un État membre et n'a 
+pas satisfait aux obligations visées à l'ar ticle 10, le mandataire et le fa br icant sont solidairement responsables des 
+dispositifs défectueux, selon des modalités identiques. 
+6. U n mandataire qui met fi n à son mandat sur la base du paragraphe 3, point h), inf or me immédiatement de la fi n 
+du mandat et des raisons de cette décision l'autori té compé tent e de l'État membre dans lequel il est ét
+
+...[truncated; full extracted page contains 3,932 characters]
+
+==========================================================================================
+PDF PAGE: 51
+REASON: evenly spaced sample
+------------------------------------------------------------------------------------------
+5. Lorsque cela est justif ié par l'utilisation, dans d'autres dispositifs implantables de classe IIb, de te chnologies 
+éprouvées similaires à celles utilisées dans les dispositifs exem pt és énumérés au paragraphe 4, deuxième alinéa, du 
+présent ar ticle, ou afin de proté ger la santé et la sécur it é des patients, des utilisat eurs ou d'autres personnes ou encore 
+comp te tenu d'autres aspects de la santé publique, la Commission est habilité e à adop ter des actes délégués 
+conf or mément à l'ar ticle 115 pour modifier ladit e list e, en y ajoutant ou en en retirant d'autres types de dispositifs 
+im plantables de classe IIb. 
+6. Les fa br icants de dispositifs de classe IIa, autres que des dispositifs sur mesure ou les dispositifs faisant l'objet d'une 
+inv estigation, sont soumis à une procédure d'évaluation de la conf or mité conf or mément à l'annex e IX, c hapitres I et III, 
+av ec évaluation de la documentation tec hnique visée à la section 4 de ladit e annexe concer nant au moins un dispositif 
+représentatif pour c haque catégo r ie de dispositifs. 
+Le fabr icant peut aussi choisir d'établir la documentation tec hnique prévue aux annexes II et III, associée à une 
+évaluation de la conf or mit é conf or mément à l'annex e XI, section 10 ou 18. L'évaluation de la documentation te chnique 
+s'applique pour au moins un dispositif représentatif pour chaque catégor ie de dispositifs. 
+7. Les f abr icants de dispositifs de classe I, autres que des dispositifs sur mesure ou les dispositifs faisant l'objet d'une 
+inv estigation, atte stent la conf or mit é de leurs produits en établissant la déclaration de conf or mité UE visée à l'ar ticle 19, 
+après av oir établi la documentation tec hnique prévue aux annex es II et III. Si ces dispositifs sont mis sur le marc hé à 
+l'
+
+...[truncated; full extracted page contains 5,174 characters]
+
+==========================================================================================
+PDF PAGE: 76
+REASON: evenly spaced sample
+------------------------------------------------------------------------------------------
+b) le caractère appropr ié d'une mesure cor rective de sécur ité proposée par un f abr icant dans plus d'un État membre est 
+mis en doute . 
+Cette procédure coordonnée por te sur: 
+— la désignation d'une autorité compét ent e coordonnatr ice au cas par cas, s'il y a lieu, 
+— la définition de la procédure d'évaluation coordonnée, notamment des tâches et des responsabilit és de l'aut or it é 
+compé tent e coordinatr ice et l'implication d'autres autori tés compét ent es. 
+Sauf si les autor it és compét ent es en conviennent autrement, l'aut or ité compét ent e coordonnatr ice est l'autori té 
+compét ent e de l'État membre dans lequel le fabr icant a son siège social. 
+L'autorité compét ent e coordonnatr ice inf or me, via le système électronique visé à l'ar ticle 92, le f abr icant, les autres 
+autori té s compét ent es et la Commission qu'elle assume ladit e f onction. 
+10. La désignation d'une autori té compét ent e coordonnatr ice est sans eff et sur le droit des autres autorités 
+compét ent es de réaliser leur propre évaluation et d'adopt er des mesures conf or mément au présent règ lement pour 
+ga rantir la protection de la santé publique et de la sécur ité des patients. L'autori té compét ent e coordonnatr ice et la 
+Commission sont ten ues inf or mées des résultats d'une telle évaluation et de l'adop tion de telles mesures. 
+11. La Commission appor te son appui administratif à l'aut or it é compé tent e coordonnatr ice dans l'ex écution des 
+tâche s prévues par le présent c hapitre. 
+Ar ticle 90 
+Analyse des données issues de la vigilance 
+La Commission met en place, en collaboration av ec les États membres, des systèmes et processus destinés à l'analyse 
+active des données disponibles dans le système électronique visé à l'ar ticle 92, afin d'identif ier les tendan
+
+...[truncated; full extracted page contains 4,342 characters]
+
+==========================================================================================
+PDF PAGE: 100
+REASON: evenly spaced sample
+------------------------------------------------------------------------------------------
+16. Protection contre les ra y onnements 
+16.1. Généralités 
+a) Les dispositifs sont conçus, fa br iqués et conditionnés de façon à réduire autant que possible l'exposition des 
+patients, des utilisateurs et d'autres personnes aux ra y onnements, d'une manière qui soit compatib le avec la 
+destination des dispositifs, sans restreindre l'application des doses appropr iées spécif iées à des fi ns thérapeu ­
+tiques ou diagnostiques. 
+b) La notice d'utilisation des dispositifs émettant des ra y onnements dange reux ou pote ntiellement dange reux 
+compo r te des inf or mations détaillées sur la nature des ra y onnements émis ainsi que sur les mo y ens de 
+protég er le patient et l'utilisateur , d'éviter les mauvaises utilisations et de réduire autant que possible et dans 
+la mesure appropr iée les r isques inhérents à l'installation. Des inf or mations sont ég alement communiquées 
+concer nant les essais d'acceptation et de performa nces, les cr itères d'acceptation et la procédure de 
+maintenanc e. 
+16.2. Ir radiation intenti onnelle 
+a) Lorsque des dispositifs sont conçus pour émettre des doses dang ereuses ou pote ntiellement dange reuses de 
+ra y onnements ionisants et/ou non ionisants dans un but médical précis dont les avantag es sont considérés 
+comme supér ieurs aux r isques inhérents à l'ir radiation, l'utilisat eur doit pouvoi r contrôler l'émission 
+de ra y onnements. Ces dispositifs sont conçus et f abr iqués de f açon à garant ir la reproductibilité des 
+paramètres var iables per tinents av ec une marge de tol érance acceptable. 
+b) Lorsque des dispositifs sont destinés à émettre des ra y onnements dang ereux ou potentiellement dangereux, 
+ionisants et/ou non ionisants, ils sont équipés, dans la mesure du possible, d'indicateur s visuels et/ou 
+sonores signalant
+
+...[truncated; full extracted page contains 4,625 characters]
+
+==========================================================================================
+PDF PAGE: 125
+REASON: evenly spaced sample
+------------------------------------------------------------------------------------------
+1.3.2. Le personnel d'un organisme notifié est lié par le secret professionnel dans l'exercice de ses f onctions en ver tu du 
+présent règ lement ou de tout e disposition de la législation nationale lui donnant effet, sauf à l'égar d des autor it és 
+responsables des organismes notifi és, des autori té s compé tent es pour les dispositifs médicaux dans les États 
+membres ou de la Commission. Les droits de propr iété sont proté gés. Les org anismes notifi és disposent de 
+procédures documenté es conf or mément aux exigences de la présent e section. 
+1.4. Responsabilit é 
+1.4.1. Les organismes notifi és souscr ivent pour leurs activités d'évaluation de la conf or mité une assurance de responsa ­
+bilité civile appropr iée à moins que cette responsabilit é ne soit couver te par l'État membre concer né sur la base 
+de la législation nationale ou que l'évaluation de la conf or mité ne soit réalisée directement par cet État membre. 
+1.4.2. La couver ture et la valeur fi nancière g lobale de l'assurance de responsabilit é civile cor respondent à l'am pleur et au 
+c hamp géographique des activités de l'organ isme notifié et sont propor tionnées au prof il de r isque des dispositifs 
+cer tif iés par l'organ isme notifié. L'assurance couvre les cas dans lesquels l'organ isme notifié pour rait être oblig é 
+d'annuler ou de suspendre des cer tificat s ou de les assor tir de restr ictions. 
+1.5. Exigen ces en matière fi nancière 
+Les org anismes notifiés disposent des ressources financières requises pour mener leurs activités d'évaluation de la 
+conf or mit é dans le cadre du c hamp couver t par la désignation et les opérations commerciales connexes. Ils 
+document ent et f our nissent la preuve de leur capacité fi nancière et de leur viabilité économique à long term e, en 
+te nant co
+
+...[truncated; full extracted page contains 4,085 characters]
+
+==========================================================================================
+PDF PAGE: 150
+REASON: evenly spaced sample
+------------------------------------------------------------------------------------------
+4.5. Dans le cas où les preuves cliniques reposent, en tota lité ou en par tie, sur des données se rappor tant à des 
+dispositifs revendiqués comme équivalents au dispositif faisant l'objet de l'évaluation, l'organisme notifi é évalue 
+s'il est appropr ié d'em plo ye r ces données, comp te te nu de fact eurs tels que les nouvelles indications et 
+l'inno vation. L'organ isme notifi é document e clairement ses conclusions sur l'équivalence alléguée et sur la 
+per tinence et la validité des données destinées à démontrer la conf or mit é. P our tout e caracté r istique du dispositif 
+dont le f abr icant fait valoir le caractère inno vant ou pour les nouvelles indications, l'organ isme notifi é évalue 
+dans quelle mesure ces alléga tions sont éta y ées par des données précliniques et cliniques et par l'analyse des 
+r isques. 
+4.6. L'organisme notifié vér if ie la validité des preuves cliniques et de l'évaluation clinique et les conclusions tirées par 
+le f abr icant quant à la conf or mité av ec les exige nces gé nérales en matière de sécur it é et de performa nces. Cette 
+vér ification por te sur l'examen de la per tinence de la détermi nation du rappor t bénéfice/r isque, de la ge stion des 
+r isques, de la notice d'utilisation, de la f or mation de l'utilisat eur et du plan de sur veillance après commerciali ­
+sation établi par le fab r icant, et compo r te ég alement un examen de la nécessité et de la validité du plan de SCA C 
+proposé, selon le cas. 
+4.7. Sur la base de l'évaluation qu'il fa it des preuves cliniques, l'organ isme notifié analyse l'évaluation clinique et la 
+déter mination du rappor t bénéfice/r isque et examine s'il con vient de fixer des échéances spécifiques pour lui 
+per mettre d'examiner les actualisations des preuves cliniques reposant sur les donn
+
+...[truncated; full extracted page contains 5,247 characters]
+
+==========================================================================================
+PDF PAGE: 175
+REASON: evenly spaced sample
+------------------------------------------------------------------------------------------
+Directive 90/385/CEE du Conseil Directive 93/42/CEE du Conseil Présent règ lement 
+Ar ticle 9, paragraphe 2 Ar ticle 11, paragraphe 6 Ar ticle 52, paragraphe 8 
+Ar ticle 9, paragraphe 3 Ar ticle 11, paragraphe 8 Ar ticle 11, paragraphe 3 
+Ar ticle 9, paragraphe 4 Ar ticle 11, paragraphe 12 Ar ticle 52, paragraphe 12 
+Ar ticle 9, paragraphe 5 Ar ticle 11, paragraphe 7 — 
+Ar ticle 9, paragraphe 6 Ar ticle 11, paragraphe 9 Ar ticle 53, paragraphe 1 
+Ar ticle 9, paragraphe 7 Ar ticle 11, paragraphe 10 Ar ticle 53, paragraphe 4 
+Ar ticle 9, paragraphe 8 Ar ticle 11, paragraphe 11 Ar ticle 56, paragraphe 2 
+Ar ticle 9, paragraphe 9 Ar ticle 11, paragraphe 13 Ar ticle 59 
+Ar ticle 9, paragraphe 10 Ar ticle 11, paragraphe 14 Ar ticle 4, paragraphe 5, et ar ticle 122, 
+troisième alinéa 
+— Ar ticle 12 Ar ticle 22 
+— Ar ticle 12 bis Ar ticle 17 
+Ar ticle 9 bis, paragraphe 1, premier ti ­
+ret 
+Ar ticle 13, paragraphe 1, point c) — 
+Ar ticle 9 bis, paragraphe 1, deu ­
+xième tiret 
+Ar ticle 13, paragraphe 1, point d) Ar ticle 4, paragraphe 1 
+— Ar ticle 13, paragraphe 1, point a) Ar ticle 51, paragraphe 3, point a), et 
+ar ticle 51, paragraphe 6 
+— Ar ticle 13, paragraphe 1, point b) Ar ticle 41, paragraphe 4, point a) 
+Ar ticle 10 Ar ticle 15 Ar ticles 62 à 82 
+Ar ticle 10 bis, paragraphe 1, ar ticle 10 
+bis, paragraphe 2, deuxième phrase, et 
+ar ticle 10 bis, paragraphe 3 
+Ar ticle 14, paragraphe 1, ar ticle 14, 
+paragraphe 2, deuxième phrase, et 
+ar ticle 14, paragraphe 3 
+Ar ticle 29, paragraphe 4, ar ticles 30 
+et 31 
+Ar ticle 10 bis, paragraphe 2, première 
+phrase 
+Ar ticle 14, paragraphe 2, première 
+phrase 
+Ar ticle 11, paragraphe 1 
+Ar ticle 10 ter Ar ticle 14 bis Ar ticles 33 et 34 
+Ar ticle 10 quater Ar ticle 14 ter Ar ticle 98 
+Ar ticle 11, paragraphe 1 Ar ticle 16, parag
+
+...[truncated; full extracted page contains 2,628 characters]
+
+
+
+##########################################################################################
+5. SUMMARY
+##########################################################################################
+
+Total pages: 175
+Extractable pages: 175
+
+Top candidate pages:
+50, 52, 2, 7, 8, 16, 23, 31, 36, 51, 57, 101, 102, 104, 107
+
+Pages mentioning Annex VIII:
+50, 52, 108, 113, 140, 168
+
+Paste the output from sections 2, 3 and 5 into the chat.

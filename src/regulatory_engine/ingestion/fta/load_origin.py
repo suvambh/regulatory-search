@@ -10,6 +10,9 @@ from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+)
 
 
 def optional_text(value):
@@ -40,11 +43,18 @@ def load_origin_rules(
     csv_path: Path,
     db_url: str,
 ):
-    if not csv_path.exists():
-        raise FileNotFoundError(
-            f"Cleaned origin CSV not found: "
-            f"{csv_path}"
-        )
+    # ----------------------------------------
+    # Restore cleaned origin CSV from S3
+    # if it is missing locally.
+    # ----------------------------------------
+
+    csv_path = ensure_local_file(
+        Path(csv_path)
+    )
+
+    print(
+        f"Loading: {csv_path}"
+    )
 
     df = pd.read_csv(
         csv_path,
@@ -274,6 +284,7 @@ def main():
         )
 
     else:
+
         load_agreement(
             args.agreement
         )

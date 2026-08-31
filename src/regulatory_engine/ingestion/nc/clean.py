@@ -3,6 +3,12 @@ import re
 
 import pandas as pd
 
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+    persist_file,
+    restore_cached_file,
+)
+
 
 def normalize_nc_code(value):
     """
@@ -124,6 +130,57 @@ def clean_pages(
         exist_ok=True,
     )
 
+    sorted_page_numbers = sorted(
+        page_numbers
+    )
+
+    expected_output_files = [
+        output_dir
+        / f"page-{page_number}.csv"
+        for page_number
+        in sorted_page_numbers
+    ]
+
+    # --------------------------------------------------
+    # Reuse complete cleaned dataset when possible.
+    #
+    # Important:
+    # NC hierarchy state can flow from one consecutive
+    # page into the next. Therefore partial cleaned-cache
+    # reuse is deliberately avoided.
+    #
+    # Either:
+    #   - all cleaned pages are available -> reuse all
+    #   - at least one is missing -> recompute the full
+    #     requested page sequence
+    # --------------------------------------------------
+
+    all_cleaned_pages_cached = True
+
+    for output_path in (
+        expected_output_files
+    ):
+
+        if not restore_cached_file(
+            output_path
+        ):
+            all_cleaned_pages_cached = False
+            break
+
+    if all_cleaned_pages_cached:
+
+        print(
+            "All requested cleaned NC pages "
+            "were restored from cache."
+        )
+
+        return expected_output_files
+
+    print(
+        "Cleaned NC cache incomplete. "
+        "Recomputing requested page sequence."
+    )
+
     output_files = []
 
     # --------------------------------------------------
@@ -152,7 +209,9 @@ def clean_pages(
     # Process pages in numerical order
     # --------------------------------------------------
 
-    for page_number in sorted(page_numbers):
+    for page_number in (
+        sorted_page_numbers
+    ):
 
         # --------------------------------------------------
         # Reset hierarchy when pages are not consecutive
@@ -160,7 +219,8 @@ def clean_pages(
 
         if (
             previous_page_number is not None
-            and page_number != previous_page_number + 1
+            and page_number
+            != previous_page_number + 1
         ):
             heading_4_code = None
             heading_4_description = None
@@ -179,7 +239,18 @@ def clean_pages(
 
             previous_final_code = None
 
-        input_path = (
+        # --------------------------------------------------
+        # Ensure raw extracted page exists locally.
+        #
+        # Local mode:
+        #   uses the local file.
+        #
+        # S3 mode:
+        #   downloads processed/raw/nc/... when the local
+        #   file is absent.
+        # --------------------------------------------------
+
+        input_path = ensure_local_file(
             input_dir
             / f"page-{page_number}.csv"
         )
@@ -197,7 +268,8 @@ def clean_pages(
 
         if len(df.columns) != 4:
             raise ValueError(
-                f"Expected 4 columns on page {page_number}, "
+                f"Expected 4 columns on page "
+                f"{page_number}, "
                 f"got {len(df.columns)}: "
                 f"{list(df.columns)}"
             )
@@ -214,7 +286,8 @@ def clean_pages(
         # --------------------------------------------------
 
         df = df[
-            df["nc_code"].str.strip() != "1"
+            df["nc_code"].str.strip()
+            != "1"
         ].copy()
 
         # --------------------------------------------------
@@ -252,14 +325,22 @@ def clean_pages(
 
         for _, row in df.iterrows():
 
-            code = row["nc_code"]
-            raw_description = row["description"]
+            code = row[
+                "nc_code"
+            ]
+
+            raw_description = row[
+                "description"
+            ]
 
             # ----------------------------------------------
             # Blank-code hierarchy row
             # ----------------------------------------------
 
-            if code is None or pd.isna(code):
+            if (
+                code is None
+                or pd.isna(code)
+            ):
 
                 if not raw_description:
                     continue
@@ -274,7 +355,10 @@ def clean_pages(
                         heading_6_code
                     )
                 ):
-                    subheading = raw_description
+                    subheading = (
+                        raw_description
+                    )
+
                     subheading_prefix = None
 
                     subheading_is_residual = (
@@ -284,11 +368,13 @@ def clean_pages(
                     )
 
                 else:
+
                     # Otherwise it is an intermediate
                     # hierarchy level below HS4.
                     intermediate_heading = (
                         raw_description
                     )
+
                     intermediate_prefix = None
 
                     intermediate_is_residual = (
@@ -307,7 +393,9 @@ def clean_pages(
 
                 continue
 
-            code = str(code)
+            code = str(
+                code
+            )
 
             # ----------------------------------------------
             # Four-digit heading
@@ -315,7 +403,10 @@ def clean_pages(
 
             if len(code) == 4:
 
-                heading_4_code = code
+                heading_4_code = (
+                    code
+                )
+
                 heading_4_description = (
                     raw_description
                 )
@@ -360,9 +451,14 @@ def clean_pages(
                 # Validate intermediate hierarchy.
                 if intermediate_heading:
 
-                    candidate_prefix = code[:5]
+                    candidate_prefix = (
+                        code[:5]
+                    )
 
-                    if intermediate_prefix is None:
+                    if (
+                        intermediate_prefix
+                        is None
+                    ):
                         intermediate_prefix = (
                             candidate_prefix
                         )
@@ -374,7 +470,10 @@ def clean_pages(
                         intermediate_prefix = None
                         intermediate_is_residual = None
 
-                heading_6_code = code
+                heading_6_code = (
+                    code
+                )
+
                 heading_6_description = (
                     raw_description
                 )
@@ -440,8 +539,13 @@ def clean_pages(
 
             if intermediate_heading:
 
-                if intermediate_prefix is None:
-                    intermediate_prefix = code[:5]
+                if (
+                    intermediate_prefix
+                    is None
+                ):
+                    intermediate_prefix = (
+                        code[:5]
+                    )
 
                 elif not code.startswith(
                     intermediate_prefix
@@ -473,8 +577,13 @@ def clean_pages(
 
             if subheading:
 
-                if subheading_prefix is None:
-                    subheading_prefix = code[:7]
+                if (
+                    subheading_prefix
+                    is None
+                ):
+                    subheading_prefix = (
+                        code[:7]
+                    )
 
                 elif not code.startswith(
                     subheading_prefix
@@ -530,8 +639,10 @@ def clean_pages(
                     raw_description
                 )
 
-            full_description = " — ".join(
-                description_parts
+            full_description = (
+                " — ".join(
+                    description_parts
+                )
             )
 
             # ----------------------------------------------
@@ -559,73 +670,71 @@ def clean_pages(
 
             cleaned_rows.append(
                 {
-                    "nc_code": code,
+                    "nc_code":
+                        code,
 
                     # Used for embeddings / retrieval
-                    "description": full_description,
+                    "description":
+                        full_description,
 
                     # HS4 hierarchy
-                    "heading_4_code": (
-                        effective_heading_4_code
-                    ),
-                    "heading_4_description": (
-                        heading_4_description
-                    ),
+                    "heading_4_code":
+                        effective_heading_4_code,
+
+                    "heading_4_description":
+                        heading_4_description,
 
                     # Intermediate hierarchy
-                    "intermediate_heading": (
-                        intermediate_heading
-                    ),
-                    "intermediate_is_residual": (
-                        intermediate_is_residual
-                    ),
+                    "intermediate_heading":
+                        intermediate_heading,
+
+                    "intermediate_is_residual":
+                        intermediate_is_residual,
 
                     # HS6 hierarchy
-                    "heading_6_code": (
-                        effective_heading_6_code
-                    ),
-                    "heading_6_description": (
-                        heading_6_description
-                    ),
-                    "heading_6_is_residual": (
-                        heading_6_is_residual
-                    ),
+                    "heading_6_code":
+                        effective_heading_6_code,
+
+                    "heading_6_description":
+                        heading_6_description,
+
+                    "heading_6_is_residual":
+                        heading_6_is_residual,
 
                     # Lower hierarchy
-                    "subheading": subheading,
-                    "subheading_is_residual": (
-                        subheading_is_residual
-                    ),
+                    "subheading":
+                        subheading,
 
-                    "leaf_description": (
-                        raw_description
-                    ),
-                    "leaf_is_residual": (
-                        leaf_is_residual
-                    ),
+                    "subheading_is_residual":
+                        subheading_is_residual,
+
+                    "leaf_description":
+                        raw_description,
+
+                    "leaf_is_residual":
+                        leaf_is_residual,
 
                     # Parent metadata
-                    "parent_code": (
-                        effective_heading_6_code
-                    ),
+                    "parent_code":
+                        effective_heading_6_code,
 
                     # True if any known parent level
                     # is a residual branch.
-                    "has_residual_ancestor": (
-                        has_residual_ancestor
-                    ),
+                    "has_residual_ancestor":
+                        has_residual_ancestor,
 
                     # Tariff
-                    "duty_text": (
-                        row["duty_text"]
-                    ),
-                    "supplementary_unit": (
-                        row["supplementary_unit"]
-                    ),
+                    "duty_text":
+                        row["duty_text"],
+
+                    "supplementary_unit":
+                        row["supplementary_unit"],
                 }
             )
 
-            previous_final_code = code
+            previous_final_code = (
+                code
+            )
 
         # --------------------------------------------------
         # 4. Final NC rows only
@@ -667,7 +776,9 @@ def clean_pages(
 
         df["duty_rate"] = (
             df["duty_text"]
-            .apply(parse_duty_rate)
+            .apply(
+                parse_duty_rate
+            )
         )
 
         # --------------------------------------------------
@@ -684,10 +795,15 @@ def clean_pages(
             "duty_text",
         ]
 
-        for column in text_columns:
+        for column in (
+            text_columns
+        ):
             df[column] = (
                 df[column]
-                .replace("", None)
+                .replace(
+                    "",
+                    None,
+                )
             )
 
         # --------------------------------------------------
@@ -698,7 +814,9 @@ def clean_pages(
             source_document
         )
 
-        df["source_section"] = None
+        df["source_section"] = (
+            None
+        )
 
         df["source_page"] = (
             page_number
@@ -748,16 +866,12 @@ def clean_pages(
         ]
 
         # --------------------------------------------------
-        # 9. Save
+        # 9. Save locally
         # --------------------------------------------------
 
         df.to_csv(
             output_path,
             index=False,
-        )
-
-        output_files.append(
-            output_path
         )
 
         print(
@@ -766,10 +880,27 @@ def clean_pages(
         )
 
         print(
-            f"Saved: {output_path}"
+            f"Saved locally: "
+            f"{output_path}"
         )
 
-        print("\nPreview:")
+        # --------------------------------------------------
+        # 10. Persist cleaned artifact to S3
+        #
+        # No-op when S3 mode is disabled.
+        # --------------------------------------------------
+
+        persist_file(
+            output_path
+        )
+
+        output_files.append(
+            output_path
+        )
+
+        print(
+            "\nPreview:"
+        )
 
         preview_columns = [
             "nc_code",

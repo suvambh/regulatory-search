@@ -8,6 +8,9 @@ from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+)
 from regulatory_engine.settings import (
     DATABASE_URL,
 )
@@ -23,31 +26,45 @@ def optional_text(value):
 
 
 def optional_float(value):
-    value = optional_text(value)
+    value = optional_text(
+        value
+    )
 
     if value is None:
         return None
 
-    return float(value)
+    return float(
+        value
+    )
 
 
 def load_tariff_lines(
     csv_path: Path,
     agreement_code: str,
 ):
-    if not csv_path.exists():
-        raise FileNotFoundError(
-            f"Cleaned tariff CSV not found: "
-            f"{csv_path}"
-        )
+    # ----------------------------------------
+    # Restore cleaned tariff CSV from S3
+    # if it is missing locally.
+    # ----------------------------------------
+
+    csv_path = ensure_local_file(
+        Path(csv_path)
+    )
+
+    print(
+        f"Loading: {csv_path}"
+    )
 
     with csv_path.open(
         "r",
         encoding="utf-8",
         newline="",
     ) as file:
+
         rows = list(
-            csv.DictReader(file)
+            csv.DictReader(
+                file
+            )
         )
 
     if not rows:
@@ -56,23 +73,28 @@ def load_tariff_lines(
             f"{csv_path}"
         )
 
+    source_tariff_codes = [
+        row[
+            "tariff_code"
+        ]
+        for row in rows
+    ]
+
+    processed = 0
+
     with psycopg.connect(
         DATABASE_URL
     ) as conn:
 
         with conn.cursor() as cur:
 
-            # Rebuild this agreement's historical
-            # tariff schedule deterministically.
-            cur.execute(
-                """
-                DELETE FROM fta_tariff_lines
-                WHERE agreement_code = %s
-                """,
-                (
-                    agreement_code,
-                ),
-            )
+            # --------------------------------
+            # Upsert every tariff line.
+            #
+            # Existing embeddings are kept
+            # unless searchable description
+            # content changes.
+            # --------------------------------
 
             for row in rows:
 
@@ -115,14 +137,87 @@ def load_tariff_lines(
                         %s, %s, %s,
                         %s, %s, %s, %s
                     )
+
+                    ON CONFLICT (
+                        agreement_code,
+                        tariff_code
+                    )
+                    DO UPDATE SET
+
+                        exporter_country =
+                            EXCLUDED.exporter_country,
+
+                        importer_region =
+                            EXCLUDED.importer_region,
+
+                        hs4_code =
+                            EXCLUDED.hs4_code,
+
+                        nomenclature_version =
+                            EXCLUDED.nomenclature_version,
+
+                        heading_4_description =
+                            EXCLUDED.heading_4_description,
+
+                        branch_context =
+                            EXCLUDED.branch_context,
+
+                        heading_6_code =
+                            EXCLUDED.heading_6_code,
+
+                        heading_6_description =
+                            EXCLUDED.heading_6_description,
+
+                        subheading_context =
+                            EXCLUDED.subheading_context,
+
+                        leaf_description =
+                            EXCLUDED.leaf_description,
+
+                        description =
+                            EXCLUDED.description,
+
+                        base_rate_pct =
+                            EXCLUDED.base_rate_pct,
+
+                        base_rate_text =
+                            EXCLUDED.base_rate_text,
+
+                        tariff_category =
+                            EXCLUDED.tariff_category,
+
+                        source_document =
+                            EXCLUDED.source_document,
+
+                        source_section =
+                            EXCLUDED.source_section,
+
+                        source_page =
+                            EXCLUDED.source_page,
+
+                        source_excerpt =
+                            EXCLUDED.source_excerpt,
+
+                        embedding =
+                            CASE
+                                WHEN
+                                    fta_tariff_lines.description
+                                    IS DISTINCT FROM
+                                    EXCLUDED.description
+                                THEN NULL
+                                ELSE
+                                    fta_tariff_lines.embedding
+                            END
                     """,
                     (
                         row[
                             "agreement_code"
                         ],
+
                         row[
                             "exporter_country"
                         ],
+
                         row[
                             "importer_region"
                         ],
@@ -130,9 +225,11 @@ def load_tariff_lines(
                         row[
                             "tariff_code"
                         ],
+
                         row[
                             "hs4_code"
                         ],
+
                         optional_text(
                             row[
                                 "nomenclature_version"
@@ -144,6 +241,7 @@ def load_tariff_lines(
                                 "heading_4_description"
                             ]
                         ),
+
                         optional_text(
                             row[
                                 "branch_context"
@@ -155,6 +253,7 @@ def load_tariff_lines(
                                 "heading_6_code"
                             ]
                         ),
+
                         optional_text(
                             row[
                                 "heading_6_description"
@@ -166,11 +265,13 @@ def load_tariff_lines(
                                 "subheading_context"
                             ]
                         ),
+
                         optional_text(
                             row[
                                 "leaf_description"
                             ]
                         ),
+
                         row[
                             "description"
                         ],
@@ -180,11 +281,13 @@ def load_tariff_lines(
                                 "base_rate_pct"
                             ]
                         ),
+
                         optional_text(
                             row[
                                 "base_rate_text"
                             ]
                         ),
+
                         optional_text(
                             row[
                                 "tariff_category"
@@ -194,16 +297,19 @@ def load_tariff_lines(
                         row[
                             "source_document"
                         ],
+
                         optional_text(
                             row[
                                 "source_section"
                             ]
                         ),
+
                         int(
                             row[
                                 "source_page"
                             ]
                         ),
+
                         optional_text(
                             row[
                                 "source_excerpt"
@@ -212,15 +318,42 @@ def load_tariff_lines(
                     ),
                 )
 
+                processed += 1
+
+            # --------------------------------
+            # Remove tariff codes that were
+            # previously loaded for this
+            # agreement but no longer exist
+            # in the cleaned source.
+            #
+            # This preserves deterministic
+            # rebuild behaviour without
+            # deleting unchanged embeddings.
+            # --------------------------------
+
+            cur.execute(
+                """
+                DELETE FROM fta_tariff_lines
+                WHERE agreement_code = %s
+                  AND NOT (
+                      tariff_code = ANY(%s)
+                  )
+                """,
+                (
+                    agreement_code,
+                    source_tariff_codes,
+                ),
+            )
+
         conn.commit()
 
     print(
         f"FTA tariff load complete: "
-        f"{len(rows)} rows loaded "
+        f"{processed} rows upserted "
         f"from {csv_path}"
     )
 
-    return len(rows)
+    return processed
 
 
 def load_agreement(
@@ -264,6 +397,7 @@ def load_agreement(
 
 
 def main():
+
     fta_config = load_fta_config()
 
     supported_agreements = [

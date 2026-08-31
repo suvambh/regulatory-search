@@ -1,33 +1,114 @@
-# regulatory-search
+# Regulatory Engine
 
-The current prototype implements an end-to-end regulatory tariff search pipeline for the EU Combined Nomenclature 2024.
+EU import tariff and regulatory search engine using PostgreSQL/pgvector, AWS Bedrock, AWS Textract, and Streamlit.
 
-The NC2024 PDF is processed page by page with **PyMuPDF** and **AWS Textract**, which extracts tariff tables into CSV. A cleaning step normalizes NC codes, descriptions, duty rates, supplementary units, and source metadata before loading the structured rows into a local **PostgreSQL** database running in Docker.
+## Local setup
 
-The `tariff_items` table stores the tariff data together with a `VECTOR(1024)` column provided by **pgvector**. Each tariff description is embedded using **AWS Bedrock Cohere Embed Multilingual v3** and stored in PostgreSQL.
+### Prerequisites
 
-At query time, the user product description is embedded with the same Cohere model using `search_query`. PostgreSQL performs a cosine-similarity search against the stored tariff embeddings to retrieve the most relevant NC candidates. These candidates are then passed to **Amazon Nova Micro** through Bedrock, which selects the most appropriate NC code based on the actual product and tariff descriptions rather than relying solely on vector similarity.
+- Docker + Docker Compose
+- AWS CLI configured with credentials that can access Bedrock and Textract in `eu-west-3`
 
-The current working flow is therefore:
-
-```text
-NC2024 PDF
-   ↓
-PyMuPDF + AWS Textract
-   ↓
-Raw CSV
-   ↓
-Cleaning / normalization
-   ↓
-PostgreSQL + pgvector
-   ↓
-Cohere multilingual embeddings
-   ↓
-Semantic candidate retrieval
-   ↓
-Amazon Nova Micro classification
-   ↓
-NC code + explanation
+```bash
+aws configure
 ```
 
-The full local pipeline has been tested successfully with the example **“Ordinateur portable 14 pouces”**, including extraction, database loading, embedding generation, vector retrieval, and LLM-based candidate selection.
+### Build
+
+```bash
+docker compose build web
+docker compose --profile ingestion build ingestion
+```
+
+### Start the database
+
+```bash
+docker compose up -d db
+```
+
+Check that it is healthy:
+
+```bash
+docker compose ps
+```
+
+### Ingest the regulatory corpus
+
+NC tariff data:
+
+```bash
+docker compose --profile ingestion run --rm ingestion \
+  python -m regulatory_engine.ingestion.nc.run
+```
+
+FTA data:
+
+```bash
+docker compose --profile ingestion run --rm ingestion \
+  python -m regulatory_engine.ingestion.fta.run
+```
+
+### Start the application
+
+```bash
+docker compose up -d web
+```
+
+Open:
+
+```text
+http://localhost:8501
+```
+
+View logs:
+
+```bash
+docker compose logs -f web
+```
+
+## Verify the database
+
+```bash
+docker compose exec db \
+  psql -U regulatory_app -d regulatory \
+  -c "
+    SELECT 'tariff_items' AS table_name, COUNT(*) FROM tariff_items
+    UNION ALL
+    SELECT 'fta_chunks', COUNT(*) FROM fta_chunks
+    UNION ALL
+    SELECT 'fta_origin_rules', COUNT(*) FROM fta_origin_rules
+    UNION ALL
+    SELECT 'fta_tariff_lines', COUNT(*) FROM fta_tariff_lines;
+  "
+```
+
+## Rebuild from scratch
+
+This deletes the Docker PostgreSQL volume.
+
+```bash
+docker compose down -v
+docker compose up -d db
+
+docker compose --profile ingestion run --rm ingestion \
+  python -m regulatory_engine.ingestion.nc.run
+
+docker compose --profile ingestion run --rm ingestion \
+  python -m regulatory_engine.ingestion.fta.run
+
+docker compose up -d web
+```
+
+## Stop
+
+Preserve the database:
+
+```bash
+docker compose down
+```
+
+Delete the database volume too:
+
+```bash
+docker compose down -v
+```

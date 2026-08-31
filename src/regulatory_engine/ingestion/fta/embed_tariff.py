@@ -3,18 +3,22 @@ import json
 import boto3
 import psycopg
 
-from regulatory_engine.settings import DATABASE_URL
-
-
-MODEL_ID = "cohere.embed-multilingual-v3"
-
-bedrock = boto3.client(
-    "bedrock-runtime",
-    region_name="eu-west-3",
+from regulatory_engine.settings import (
+    AWS_REGION,
+    DATABASE_URL,
+    EMBEDDING_MODEL,
 )
 
 
-def vector_to_string(vector):
+bedrock = boto3.client(
+    "bedrock-runtime",
+    region_name=AWS_REGION,
+)
+
+
+def vector_to_string(
+    vector,
+):
     return "[" + ",".join(
         str(x)
         for x in vector
@@ -51,7 +55,9 @@ def build_embedding_text(
         if part is None:
             continue
 
-        part = str(part).strip()
+        part = str(
+            part
+        ).strip()
 
         if not part:
             continue
@@ -68,10 +74,12 @@ def build_embedding_text(
     )
 
 
-def main():
+def embed_tariff_lines(
+    db_url: str = DATABASE_URL,
+):
 
     with psycopg.connect(
-        DATABASE_URL
+        db_url
     ) as conn:
 
         with conn.cursor() as cur:
@@ -97,7 +105,9 @@ def main():
                 print(
                     "Nothing to embed"
                 )
-                return
+                return 0
+
+            embedded = 0
 
             for (
                 row_id,
@@ -133,7 +143,9 @@ def main():
 
                 response = (
                     bedrock.invoke_model(
-                        modelId=MODEL_ID,
+                        modelId=(
+                            EMBEDDING_MODEL
+                        ),
                         body=json.dumps(
                             {
                                 "texts": [
@@ -141,6 +153,8 @@ def main():
                                 ],
                                 "input_type":
                                     "search_document",
+                                "truncate":
+                                    "END",
                             }
                         ),
                     )
@@ -170,6 +184,8 @@ def main():
                     ),
                 )
 
+                embedded += 1
+
                 print(
                     f"Embedded "
                     f"{tariff_code}"
@@ -182,7 +198,17 @@ def main():
         conn.commit()
 
     print(
-        "\nFTA tariff embeddings complete."
+        f"\nFTA tariff embeddings "
+        f"complete: {embedded} embedded."
+    )
+
+    return embedded
+
+
+def main():
+
+    embed_tariff_lines(
+        db_url=DATABASE_URL
     )
 
 

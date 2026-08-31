@@ -3,7 +3,6 @@ from dataclasses import asdict
 from regulatory_engine.fta import (
     get_preferential_context,
 )
-
 from regulatory_engine.classification.service import (
     search_and_classify,
 )
@@ -22,6 +21,11 @@ def find_selected_candidate_rate(
     candidates,
     nc_code,
 ):
+    """
+    Return the standard duty rate attached to the
+    selected exact NC8 candidate.
+    """
+
     for row in candidates:
         candidate_nc_code = str(
             row[0]
@@ -44,7 +48,7 @@ def find_selected_candidate_description(
 ):
     """
     Return the reconstructed NC2024 description
-    for the selected candidate.
+    for the selected exact candidate.
     """
 
     for row in candidates:
@@ -58,23 +62,25 @@ def find_selected_candidate_description(
     return None
 
 
-def find_common_candidate_context(
+def find_common_candidate_hs4(
     candidates,
 ):
     """
-    If all plausible candidates share:
-        - the same HS4 heading
-        - the same standard duty rate
+    Return a common HS4 heading when every retrieved
+    plausible candidate belongs to the same HS4 family.
 
-    then the tariff can be calculated at that
-    common level without claiming an exact NC8 code.
+    Important:
+    This helper deliberately DOES NOT infer a common
+    customs-duty rate from semantic top-K candidates.
+
+    The retrieved candidate set is not guaranteed to
+    contain every legally plausible NC8 branch.
     """
 
     if not candidates:
         return None
 
     hs_codes = set()
-    duty_rates = set()
 
     for row in candidates:
         nc_code = str(
@@ -88,26 +94,12 @@ def find_common_candidate_context(
             nc_code[:4]
         )
 
-        if row[2] is None:
-            return None
-
-        duty_rates.add(
-            float(row[2])
-        )
-
     if len(hs_codes) != 1:
         return None
 
-    if len(duty_rates) != 1:
-        return None
-
-    return {
-        "hs_code":
-            next(iter(hs_codes)),
-
-        "standard_rate_pct":
-            next(iter(duty_rates)),
-    }
+    return next(
+        iter(hs_codes)
+    )
 
 
 # ============================================================
@@ -251,11 +243,25 @@ def determine_preferential_rate(
 def build_preferential_tariff(
     scenario_input,
     lookup_code,
-    standard_rate_pct,
     classification_status,
     product_description,
     current_nc_description=None,
+    standard_rate_pct=None,
 ):
+    """
+    Retrieve preferential context and calculate only
+    values that are supported by available evidence.
+
+    standard_rate_pct may be None when exact NC8
+    classification is unresolved.
+
+    In that case:
+        - preferential rate may still be determined
+        - preferential duty may still be calculated
+        - standard duty remains unknown
+        - saving remains unknown
+    """
+
     exporter_country = scenario_input[
         "export_country"
     ]
@@ -288,6 +294,12 @@ def build_preferential_tariff(
             "agreement":
                 None,
 
+            "standard_rate_pct":
+                standard_rate_pct,
+
+            "standard_duty_eur":
+                None,
+
             "preferential_rate_pct":
                 None,
 
@@ -299,7 +311,7 @@ def build_preferential_tariff(
         }
 
     # --------------------------------------------------------
-    # Determine rate
+    # Determine preferential rate
     # --------------------------------------------------------
 
     preferential_rule = (
@@ -338,6 +350,12 @@ def build_preferential_tariff(
                     "tariff_schedule"
                 ),
 
+            "standard_rate_pct":
+                standard_rate_pct,
+
+            "standard_duty_eur":
+                None,
+
             "preferential_rate_pct":
                 None,
 
@@ -349,7 +367,7 @@ def build_preferential_tariff(
         }
 
     # --------------------------------------------------------
-    # Calculate preferential duty
+    # Preferential duty
     # --------------------------------------------------------
 
     goods_value_eur = float(
@@ -358,7 +376,7 @@ def build_preferential_tariff(
         ]
     )
 
-    preferential_rate_pct = (
+    preferential_rate_pct = float(
         preferential_rule[
             "rate_pct"
         ]
@@ -371,27 +389,47 @@ def build_preferential_tariff(
         2,
     )
 
-    standard_duty_eur = round(
-        goods_value_eur
-        * standard_rate_pct
-        / 100,
-        2,
-    )
+    # --------------------------------------------------------
+    # Standard duty and saving
+    #
+    # These are calculated ONLY when an exact supported
+    # standard rate is available.
+    # --------------------------------------------------------
 
-    saving_eur = round(
-        standard_duty_eur
-        - preferential_duty_eur,
-        2,
-    )
+    standard_duty_eur = None
+    saving_eur = None
 
-    if classification_status == "SUPPORTED":
+    if standard_rate_pct is not None:
+        standard_duty_eur = round(
+            goods_value_eur
+            * float(standard_rate_pct)
+            / 100,
+            2,
+        )
+
+        saving_eur = round(
+            standard_duty_eur
+            - preferential_duty_eur,
+            2,
+        )
+
+    # --------------------------------------------------------
+    # Result status
+    # --------------------------------------------------------
+
+    if (
+        classification_status == "SUPPORTED"
+        and standard_rate_pct is not None
+    ):
         status = (
             "CALCULATED_ON_ASSERTED_ORIGIN"
         )
+
     else:
         status = (
-            "CALCULATED_WITH_CLASSIFICATION_"
-            "UNCERTAINTY_ON_ASSERTED_ORIGIN"
+            "PREFERENTIAL_RATE_DETERMINED_"
+            "WITH_CLASSIFICATION_UNCERTAINTY_"
+            "ON_ASSERTED_ORIGIN"
         )
 
     return {
@@ -422,7 +460,7 @@ def build_preferential_tariff(
             f"The scenario states "
             f"{exporter_country} as the export "
             f"country. For the purpose of the "
-            f"preferential tariff calculation, "
+            f"preferential tariff assessment, "
             f"the product is assumed to qualify "
             f"as originating under the applicable "
             f"agreement. This origin status cannot "
@@ -463,52 +501,43 @@ def build_preferential_tariff(
 
 
 def build_uncertain_standard_tariff(
-    scenario_input,
-    common_context,
     classification,
+    hs_code,
 ):
-    goods_value_eur = float(
-        scenario_input[
-            "goods_value_eur"
-        ]
-    )
+    """
+    Do not calculate a standard tariff from semantic
+    top-K candidates when the exact NC8 classification
+    is unresolved.
 
-    rate = common_context[
-        "standard_rate_pct"
-    ]
-
-    duty = round(
-        goods_value_eur
-        * rate
-        / 100,
-        2,
-    )
+    Multiple NC8 branches within the same HS4 heading
+    may carry different standard duty rates even when
+    the retrieved top-K candidates happen to share one.
+    """
 
     return {
         "status":
-            "CALCULATED_WITH_CLASSIFICATION_UNCERTAINTY",
+            "STANDARD_RATE_NOT_DETERMINED",
 
         "hs_code":
-            common_context[
-                "hs_code"
-            ],
+            hs_code,
 
         "standard_rate_pct":
-            rate,
+            None,
 
         "standard_duty_eur":
-            duty,
+            None,
 
-        "calculation_basis": (
-            f"{goods_value_eur:.2f} EUR "
-            f"× {rate}%"
-        ),
+        "calculation_basis":
+            None,
 
         "classification_note": (
-            "The exact 8-digit NC code could not be "
-            "determined, but all retrieved plausible "
-            "candidates share the same HS4 heading "
-            "and standard duty rate."
+            "The product can be narrowed to a common "
+            f"HS4 heading ({hs_code}), but the exact "
+            "8-digit NC classification is unresolved. "
+            "A standard customs-duty rate is therefore "
+            "not calculated from the semantic candidate "
+            "set because other NC8 branches within the "
+            "same HS4 heading may carry different rates."
         ),
 
         "missing_information":
@@ -629,7 +658,13 @@ def _evaluate_input(
             )
 
     # --------------------------------------------------------
-    # 2B. Exact NC uncertain, common HS4 + rate available
+    # 2B. Exact NC uncertain
+    #
+    # A shared HS4 may still be useful for:
+    #   - agreement lookup
+    #   - origin-rule lookup
+    #
+    # It is NOT sufficient to derive a standard duty rate.
     # --------------------------------------------------------
 
     elif (
@@ -638,25 +673,21 @@ def _evaluate_input(
         ]
         == "UNCERTAIN_CLASSIFICATION"
     ):
-        common_context = (
-            find_common_candidate_context(
+        common_hs4 = (
+            find_common_candidate_hs4(
                 candidates
             )
         )
 
-        if common_context is not None:
+        if common_hs4 is not None:
             tariff = (
                 build_uncertain_standard_tariff(
-                    scenario_input=(
-                        scenario_input
-                    ),
-
-                    common_context=(
-                        common_context
-                    ),
-
                     classification=(
                         classification
+                    ),
+
+                    hs_code=(
+                        common_hs4
                     ),
                 )
             )
@@ -668,16 +699,10 @@ def _evaluate_input(
                     ),
 
                     lookup_code=(
-                        common_context[
-                            "hs_code"
-                        ]
+                        common_hs4
                     ),
 
-                    standard_rate_pct=(
-                        common_context[
-                            "standard_rate_pct"
-                        ]
-                    ),
+                    standard_rate_pct=None,
 
                     classification_status=(
                         classification[
@@ -692,6 +717,10 @@ def _evaluate_input(
                     current_nc_description=None,
                 )
             )
+
+    # --------------------------------------------------------
+    # Response
+    # --------------------------------------------------------
 
     return {
         "classification":

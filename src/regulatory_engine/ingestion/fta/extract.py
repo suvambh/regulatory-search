@@ -14,11 +14,19 @@ from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+    persist_file,
+    restore_cached_file,
+)
+from regulatory_engine.settings import (
+    AWS_REGION,
+)
 
 
 textract = boto3.client(
     "textract",
-    region_name="eu-west-3",
+    region_name=AWS_REGION,
 )
 
 
@@ -34,25 +42,101 @@ def extract_fta_table_pages(
     output_dir: Path,
 ) -> list[Path]:
 
-    if not pdf_path.exists():
-        raise FileNotFoundError(
-            f"PDF not found: {pdf_path}"
-        )
+    pdf_path = Path(
+        pdf_path
+    )
+
+    output_dir = Path(
+        output_dir
+    )
 
     output_dir.mkdir(
         parents=True,
         exist_ok=True,
     )
 
+    # ----------------------------------------
+    # Determine expected output files first
+    # ----------------------------------------
+
+    output_paths = {
+        page_number: (
+            output_dir
+            / f"page-{page_number}.csv"
+        )
+        for page_number in page_numbers
+    }
+
+    # ----------------------------------------
+    # Restore any cached extracted pages
+    #
+    # Local file:
+    # data/raw/...
+    #
+    # S3:
+    # processed/raw/...
+    # ----------------------------------------
+
+    missing_pages = []
+
+    for page_number in page_numbers:
+
+        output_path = output_paths[
+            page_number
+        ]
+
+        if restore_cached_file(
+            output_path
+        ):
+            print(
+                f"Using cached FTA table page: "
+                f"{output_path}"
+            )
+            continue
+
+        missing_pages.append(
+            page_number
+        )
+
+    # ----------------------------------------
+    # If everything was cached, we do not
+    # need the source PDF or Textract.
+    # ----------------------------------------
+
+    if not missing_pages:
+
+        print(
+            "All requested FTA table pages "
+            "were restored from cache."
+        )
+
+        return [
+            output_paths[
+                page_number
+            ]
+            for page_number
+            in page_numbers
+        ]
+
+    # ----------------------------------------
+    # At least one page must be extracted.
+    #
+    # Ensure the PDF exists locally.
+    # If S3 is enabled and the local PDF
+    # is missing, storage.py downloads it.
+    # ----------------------------------------
+
+    pdf_path = ensure_local_file(
+        pdf_path
+    )
+
     document = pymupdf.open(
         pdf_path
     )
 
-    output_files = []
-
     try:
 
-        for page_number in page_numbers:
+        for page_number in missing_pages:
 
             if (
                 page_number < 1
@@ -68,7 +152,10 @@ def extract_fta_table_pages(
             ]
 
             pixmap = page.get_pixmap(
-                matrix=pymupdf.Matrix(2, 2),
+                matrix=pymupdf.Matrix(
+                    2,
+                    2,
+                ),
                 alpha=False,
             )
 
@@ -102,28 +189,43 @@ def extract_fta_table_pages(
                 ],
             )
 
-            output_path = (
-                output_dir
-                / f"page-{page_number}.csv"
-            )
+            output_path = output_paths[
+                page_number
+            ]
 
             output_path.write_text(
                 csv_text,
                 encoding="utf-8",
             )
 
-            output_files.append(
-                output_path
-            )
-
             print(
                 f"Saved: {output_path}"
             )
 
+            # --------------------------------
+            # Persist extracted artifact
+            # to S3 when S3 is enabled.
+            #
+            # data/raw/...
+            # →
+            # processed/raw/...
+            # --------------------------------
+
+            persist_file(
+                output_path
+            )
+
     finally:
+
         document.close()
 
-    return output_files
+    return [
+        output_paths[
+            page_number
+        ]
+        for page_number
+        in page_numbers
+    ]
 
 
 def extract_dataset(

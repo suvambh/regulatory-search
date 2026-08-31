@@ -14,6 +14,7 @@ COPY src ./src
 COPY app ./app
 COPY scripts ./scripts
 COPY config ./config
+COPY database ./database
 
 RUN pip install --no-cache-dir ".[ui]"
 

@@ -4,7 +4,9 @@ from regulatory_engine.ingestion.nc.clean import clean_pages
 from regulatory_engine.ingestion.nc.embed import embed_tariff_items
 from regulatory_engine.ingestion.nc.extract import extract_pages
 from regulatory_engine.ingestion.nc.load import load_csv_files
-
+from regulatory_engine.infrastructure.migrations import (
+    run_migrations,
+)
 from regulatory_engine.settings import DATABASE_URL
 
 
@@ -27,6 +29,7 @@ SOURCE_DOCUMENT = (
 
 PAGE_NUMBERS = [
     136,  # 1509 20 00 - extra virgin olive oil
+    604,
     605,
     622,  # 8507 60 00 - lithium-ion accumulators
     629,
@@ -40,6 +43,13 @@ PAGE_NUMBERS = [
 
 
 def main():
+
+    print(
+        "\n--- DATABASE MIGRATIONS ---"
+    )
+
+    run_migrations()
+ 
     print("\n--- EXTRACT ---")
 
     extract_pages(

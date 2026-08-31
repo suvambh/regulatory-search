@@ -8,11 +8,19 @@ from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+    persist_file,
+    restore_cached_file,
+)
+from regulatory_engine.settings import (
+    AWS_REGION,
+)
 
 
 textract = boto3.client(
     "textract",
-    region_name="eu-west-3",
+    region_name=AWS_REGION,
 )
 
 
@@ -26,6 +34,7 @@ def extract_page_lines(
     )
 
     try:
+
         if (
             page_number < 1
             or page_number > len(document)
@@ -40,7 +49,10 @@ def extract_page_lines(
         ]
 
         pixmap = page.get_pixmap(
-            matrix=pymupdf.Matrix(2, 2),
+            matrix=pymupdf.Matrix(
+                2,
+                2,
+            ),
             alpha=False,
         )
 
@@ -49,6 +61,7 @@ def extract_page_lines(
         )
 
     finally:
+
         document.close()
 
     response = (
@@ -180,20 +193,102 @@ def extract_legal_pages(
     pdf_path: Path,
     page_numbers: list[int],
     output_dir: Path,
-):
+) -> list[Path]:
 
-    if not pdf_path.exists():
-        raise FileNotFoundError(
-            f"PDF not found: "
-            f"{pdf_path}"
-        )
+    pdf_path = Path(
+        pdf_path
+    )
+
+    output_dir = Path(
+        output_dir
+    )
 
     output_dir.mkdir(
         parents=True,
         exist_ok=True,
     )
 
+    # ----------------------------------------
+    # Determine expected output files first
+    # ----------------------------------------
+
+    output_paths = {
+        page_number: (
+            output_dir
+            / f"page-{page_number}.txt"
+        )
+        for page_number in page_numbers
+    }
+
+    # ----------------------------------------
+    # Restore cached legal-page text
+    #
+    # Local:
+    # data/raw/...
+    #
+    # S3:
+    # processed/raw/...
+    # ----------------------------------------
+
+    missing_pages = []
+
     for page_number in page_numbers:
+
+        output_path = output_paths[
+            page_number
+        ]
+
+        if restore_cached_file(
+            output_path
+        ):
+            print(
+                f"Using cached FTA legal page: "
+                f"{output_path}"
+            )
+            continue
+
+        missing_pages.append(
+            page_number
+        )
+
+    # ----------------------------------------
+    # Everything already exists locally
+    # or was restored from S3.
+    #
+    # No PDF or Textract required.
+    # ----------------------------------------
+
+    if not missing_pages:
+
+        print(
+            "All requested FTA legal pages "
+            "were restored from cache."
+        )
+
+        return [
+            output_paths[
+                page_number
+            ]
+            for page_number
+            in page_numbers
+        ]
+
+    # ----------------------------------------
+    # At least one page is missing.
+    #
+    # Download the PDF from S3 if the
+    # local copy does not exist.
+    # ----------------------------------------
+
+    pdf_path = ensure_local_file(
+        pdf_path
+    )
+
+    # ----------------------------------------
+    # Extract only missing pages
+    # ----------------------------------------
+
+    for page_number in missing_pages:
 
         print(
             f"Processing legal page "
@@ -205,10 +300,9 @@ def extract_legal_pages(
             page_number=page_number,
         )
 
-        output_path = (
-            output_dir
-            / f"page-{page_number}.txt"
-        )
+        output_path = output_paths[
+            page_number
+        ]
 
         output_path.write_text(
             text,
@@ -218,6 +312,23 @@ def extract_legal_pages(
         print(
             f"Saved: {output_path}"
         )
+
+        # ------------------------------------
+        # Persist reusable Textract output
+        # to S3.
+        # ------------------------------------
+
+        persist_file(
+            output_path
+        )
+
+    return [
+        output_paths[
+            page_number
+        ]
+        for page_number
+        in page_numbers
+    ]
 
 
 def extract_agreement(
@@ -263,7 +374,7 @@ def extract_agreement(
         f"Pages: {page_numbers}"
     )
 
-    extract_legal_pages(
+    return extract_legal_pages(
         pdf_path=pdf_path,
         page_numbers=page_numbers,
         output_dir=output_dir,
@@ -301,6 +412,7 @@ def main():
             )
 
     else:
+
         extract_agreement(
             args.agreement
         )

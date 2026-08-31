@@ -8,6 +8,11 @@ from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+    persist_file,
+    restore_cached_file,
+)
 
 
 def normalize_text(value):
@@ -176,11 +181,11 @@ def read_tariff_pages(
             / f"page-{page_number}.csv"
         )
 
-        if not input_path.exists():
-            raise FileNotFoundError(
-                f"FTA tariff CSV not found: "
-                f"{input_path}"
-            )
+        # Restore raw Textract output from S3
+        # if it is not present locally.
+        input_path = ensure_local_file(
+            input_path
+        )
 
         df = pd.read_csv(
             input_path,
@@ -275,24 +280,6 @@ def apply_pending_context(
     """
     Decide where blank-code hierarchy rows
     belong by looking at the next coded row.
-
-    Example:
-
-        [blank] autres moniteurs:
-        8528 51 00 ...
-
-    The HS6 family changed, so "autres
-    moniteurs" is a new branch under HS4.
-
-    Example:
-
-        8528 49 10 ...
-        [blank] en couleurs:
-        8528 49 35 ...
-
-    The HS6 family stayed the same, so
-    "en couleurs" is a subheading inside
-    852849.
     """
 
     if not pending_context:
@@ -307,7 +294,6 @@ def apply_pending_context(
             subheading_context,
         )
 
-    # A new HS4 heading resets everything.
     if len(next_code) == 4:
         return (
             [],
@@ -347,8 +333,6 @@ def apply_pending_context(
         else None
     )
 
-    # If the HS6 family changes, the pending
-    # text represents a new higher-level branch.
     if (
         previous_hs6
         and next_hs6
@@ -361,7 +345,6 @@ def apply_pending_context(
             [],
         )
 
-    # Immediately below an HS4 heading.
     if (
         previous_code
         and len(previous_code) == 4
@@ -373,8 +356,6 @@ def apply_pending_context(
             [],
         )
 
-    # Otherwise the hierarchy stays inside
-    # the same HS6 family.
     new_subheading_context = list(
         subheading_context
     )
@@ -484,8 +465,6 @@ def clean_tariff_rows(
 
             continue
 
-        # Ignore rows until an HS4 heading
-        # has been established.
         if not heading_4_code:
             previous_code = code
             continue
@@ -519,8 +498,6 @@ def clean_tariff_rows(
             :4
         ]
 
-        # Some leaf rows appear without an
-        # explicit six-digit parent row.
         effective_heading_6_code = (
             code[
                 :6
@@ -692,6 +669,11 @@ def clean_agreement(
         ]
     )
 
+    output_path = (
+        clean_dir
+        / "tariff-lines.csv"
+    )
+
     print(
         f"\nCleaning FTA tariff schedule: "
         f"{agreement_key}"
@@ -700,6 +682,34 @@ def clean_agreement(
     print(
         f"Pages: {page_numbers}"
     )
+
+    # ----------------------------------------
+    # Reuse complete cleaned tariff schedule
+    # if it exists locally or in S3.
+    #
+    # We cache the complete output rather
+    # than individual cleaned pages because
+    # hierarchy may cross page boundaries.
+    # ----------------------------------------
+
+    if restore_cached_file(
+        output_path
+    ):
+        print(
+            f"Using cached cleaned FTA "
+            f"tariff schedule: "
+            f"{output_path}"
+        )
+
+        return output_path
+
+    # ----------------------------------------
+    # Each required raw page is restored
+    # from S3 if necessary.
+    #
+    # read_tariff_pages() then creates one
+    # continuous stream across all pages.
+    # ----------------------------------------
 
     rows = read_tariff_pages(
         raw_dir=raw_dir,
@@ -720,11 +730,6 @@ def clean_agreement(
         exist_ok=True,
     )
 
-    output_path = (
-        clean_dir
-        / "tariff-lines.csv"
-    )
-
     result.to_csv(
         output_path,
         index=False,
@@ -737,6 +742,14 @@ def clean_agreement(
 
     print(
         f"Saved: {output_path}"
+    )
+
+    # ----------------------------------------
+    # Persist complete cleaned schedule.
+    # ----------------------------------------
+
+    persist_file(
+        output_path
     )
 
     if not result.empty:

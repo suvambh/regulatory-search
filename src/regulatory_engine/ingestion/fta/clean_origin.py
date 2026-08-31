@@ -8,6 +8,11 @@ from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+    persist_file,
+    restore_cached_file,
+)
 
 
 def normalize_text(value):
@@ -128,11 +133,14 @@ def read_origin_table(
     into the four logical origin-rule columns.
     """
 
-    if not input_path.exists():
-        raise FileNotFoundError(
-            f"FTA origin file not found: "
-            f"{input_path}"
-        )
+    # ----------------------------------------
+    # Restore the raw Textract CSV from S3
+    # if it is missing locally.
+    # ----------------------------------------
+
+    input_path = ensure_local_file(
+        Path(input_path)
+    )
 
     df = pd.read_csv(
         input_path,
@@ -447,6 +455,28 @@ def clean_origin_page(
         / f"page-{page_number}.csv"
     )
 
+    # ----------------------------------------
+    # Reuse cleaned page if it exists
+    # locally or can be restored from S3.
+    # ----------------------------------------
+
+    if restore_cached_file(
+        output_path
+    ):
+        print(
+            f"Using cached cleaned "
+            f"FTA origin page: "
+            f"{output_path}"
+        )
+
+        return output_path
+
+    # ----------------------------------------
+    # read_origin_table() will restore
+    # the raw extracted CSV from S3
+    # if necessary.
+    # ----------------------------------------
+
     df = read_origin_table(
         input_path
     )
@@ -486,6 +516,18 @@ def clean_origin_page(
 
     print(
         f"Saved: {output_path}"
+    )
+
+    # ----------------------------------------
+    # Persist reusable cleaned output to S3.
+    #
+    # data/cleaned/...
+    # →
+    # processed/cleaned/...
+    # ----------------------------------------
+
+    persist_file(
+        output_path
     )
 
     if not result.empty:
@@ -586,6 +628,7 @@ def main():
             )
 
     else:
+
         clean_agreement(
             args.agreement
         )

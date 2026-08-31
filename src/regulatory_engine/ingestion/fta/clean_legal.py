@@ -8,6 +8,11 @@ from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
 )
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+    persist_file,
+    restore_cached_file,
+)
 
 
 def normalize_text(value):
@@ -123,6 +128,21 @@ def clean_legal_articles(
         ]
     )
 
+    # ----------------------------------------
+    # Reuse cleaned output if it already
+    # exists locally or in S3.
+    # ----------------------------------------
+
+    if restore_cached_file(
+        output_path
+    ):
+        print(
+            f"Using cached cleaned FTA "
+            f"legal data: {output_path}"
+        )
+
+        return output_path
+
     rows = []
 
     for article_config in legal_config[
@@ -152,11 +172,16 @@ def clean_legal_articles(
             / f"page-{page_number}.txt"
         )
 
-        if not page_path.exists():
-            raise FileNotFoundError(
-                f"Legal page not found: "
-                f"{page_path}"
-            )
+        # ------------------------------------
+        # Ensure raw Textract output exists.
+        #
+        # If missing locally, storage.py
+        # restores it from S3.
+        # ------------------------------------
+
+        page_path = ensure_local_file(
+            page_path
+        )
 
         page_text = (
             page_path.read_text(
@@ -206,6 +231,19 @@ def clean_legal_articles(
 
     print(
         f"Saved: {output_path}"
+    )
+
+    # ----------------------------------------
+    # Persist reusable cleaned artifact
+    # to S3.
+    #
+    # data/cleaned/...
+    # →
+    # processed/cleaned/...
+    # ----------------------------------------
+
+    persist_file(
+        output_path
     )
 
     print()
@@ -276,6 +314,7 @@ def main():
             )
 
     else:
+
         clean_agreement(
             args.agreement
         )

@@ -3,6 +3,10 @@ from pathlib import Path
 import pandas as pd
 import psycopg
 
+from regulatory_engine.infrastructure.storage import (
+    ensure_local_file,
+)
+
 
 def optional_text(value):
     if value is None:
@@ -117,15 +121,32 @@ def load_csv_files(
 ):
     processed = 0
 
-    with psycopg.connect(db_url) as conn:
+    with psycopg.connect(
+        db_url
+    ) as conn:
+
         with conn.cursor() as cur:
 
             for csv_path in csv_paths:
 
-                if not csv_path.exists():
-                    raise FileNotFoundError(
-                        f"Cleaned CSV not found: {csv_path}"
-                    )
+                # ----------------------------------------
+                # Ensure cleaned CSV is available locally.
+                #
+                # Local mode:
+                #   reuse existing file.
+                #
+                # S3 mode:
+                #   restore processed/cleaned/... from S3
+                #   when the local file is absent.
+                # ----------------------------------------
+
+                csv_path = ensure_local_file(
+                    Path(csv_path)
+                )
+
+                print(
+                    f"Loading: {csv_path}"
+                )
 
                 # Keep codes and text exactly as stored
                 # in the cleaned CSV.
@@ -135,7 +156,9 @@ def load_csv_files(
                     keep_default_na=False,
                 )
 
-                for row in df.itertuples(index=False):
+                for row in df.itertuples(
+                    index=False
+                ):
 
                     cur.execute(
                         """
@@ -282,7 +305,9 @@ def load_csv_files(
                                 END
                         """,
                         (
-                            str(row.nc_code),
+                            str(
+                                row.nc_code
+                            ),
                             row.description,
 
                             optional_text(

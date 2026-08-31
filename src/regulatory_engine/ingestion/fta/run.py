@@ -1,6 +1,10 @@
 import subprocess
 import sys
 
+from regulatory_engine.infrastructure.migrations import (
+    run_migrations,
+)
+
 
 STEPS = [
     (
@@ -66,7 +70,27 @@ def run_step(
 
 
 def main():
+
+    # ----------------------------------------
+    # Ensure the database schema exists
+    # before any load/embed step.
+    # ----------------------------------------
+
+    print(
+        f"\n{'=' * 70}\n"
+        "RUNNING: database migrations\n"
+        f"{'=' * 70}\n",
+        flush=True,
+    )
+
+    run_migrations()
+
+    # ----------------------------------------
+    # Run FTA ingestion stages
+    # ----------------------------------------
+
     for module_name, args in STEPS:
+
         run_step(
             module_name,
             args,

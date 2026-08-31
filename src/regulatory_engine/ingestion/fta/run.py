@@ -1,100 +1,221 @@
-import subprocess
-import sys
-
+from regulatory_engine.fta.config import (
+    load_fta_config,
+)
 from regulatory_engine.infrastructure.migrations import (
     run_migrations,
 )
 
+from regulatory_engine.ingestion.fta.extract import (
+    extract_all_for_agreement,
+)
+from regulatory_engine.ingestion.fta.extract_legal import (
+    extract_agreement as extract_legal_agreement,
+)
 
-STEPS = [
-    (
-        "regulatory_engine.ingestion.fta.extract",
-        ["all", "all"],
-    ),
-    (
-        "regulatory_engine.ingestion.fta.extract_legal",
-        ["all"],
-    ),
-    (
-        "regulatory_engine.ingestion.fta.clean_legal",
-        ["all"],
-    ),
-    (
-        "regulatory_engine.ingestion.fta.clean_origin",
-        ["all"],
-    ),
-    (
-        "regulatory_engine.ingestion.fta.clean_tariff",
-        ["korea"],
-    ),
-    (
-        "regulatory_engine.ingestion.fta.load_legal",
-        ["all"],
-    ),
-    (
-        "regulatory_engine.ingestion.fta.load_origin",
-        ["all"],
-    ),
-    (
-        "regulatory_engine.ingestion.fta.load_tariff",
-        ["korea"],
-    ),
-    (
-        "regulatory_engine.ingestion.fta.embed_tariff",
-        [],
-    ),
-]
+from regulatory_engine.ingestion.fta.clean_legal import (
+    clean_agreement as clean_legal_agreement,
+)
+from regulatory_engine.ingestion.fta.clean_origin import (
+    clean_agreement as clean_origin_agreement,
+)
+from regulatory_engine.ingestion.fta.clean_tariff import (
+    clean_agreement as clean_tariff_agreement,
+)
+
+from regulatory_engine.ingestion.fta.load_legal import (
+    load_agreement as load_legal_agreement,
+)
+from regulatory_engine.ingestion.fta.load_origin import (
+    load_agreement as load_origin_agreement,
+)
+from regulatory_engine.ingestion.fta.load_tariff import (
+    load_agreement as load_tariff_agreement,
+)
+
+from regulatory_engine.ingestion.fta.embed_tariff import (
+    embed_tariff_lines,
+)
 
 
-def run_step(
-    module_name: str,
-    args: list[str],
+def print_stage(
+    name: str,
 ):
     print(
         f"\n{'=' * 70}\n"
-        f"RUNNING: {module_name}"
-        f"{' ' + ' '.join(args) if args else ''}\n"
+        f"{name}\n"
         f"{'=' * 70}\n",
         flush=True,
-    )
-
-    subprocess.run(
-        [
-            sys.executable,
-            "-m",
-            module_name,
-            *args,
-        ],
-        check=True,
     )
 
 
 def main():
 
-    # ----------------------------------------
-    # Ensure the database schema exists
-    # before any load/embed step.
-    # ----------------------------------------
+    fta_config = load_fta_config()
 
-    print(
-        f"\n{'=' * 70}\n"
-        "RUNNING: database migrations\n"
-        f"{'=' * 70}\n",
-        flush=True,
+    agreement_keys = list(
+        fta_config.keys()
+    )
+
+    # --------------------------------------------------------
+    # 1. Database migrations
+    # --------------------------------------------------------
+
+    print_stage(
+        "DATABASE MIGRATIONS"
     )
 
     run_migrations()
 
-    # ----------------------------------------
-    # Run FTA ingestion stages
-    # ----------------------------------------
+    # --------------------------------------------------------
+    # 2. Extract structured FTA tables
+    #
+    # Currently:
+    #   - origin rules
+    #   - historical tariff schedules when configured
+    # --------------------------------------------------------
 
-    for module_name, args in STEPS:
+    print_stage(
+        "EXTRACT STRUCTURED FTA TABLES"
+    )
 
-        run_step(
-            module_name,
-            args,
+    for agreement_key in agreement_keys:
+
+        extract_all_for_agreement(
+            agreement_key
         )
+
+    # --------------------------------------------------------
+    # 3. Extract legal text
+    # --------------------------------------------------------
+
+    print_stage(
+        "EXTRACT FTA LEGAL TEXT"
+    )
+
+    for agreement_key in agreement_keys:
+
+        extract_legal_agreement(
+            agreement_key
+        )
+
+    # --------------------------------------------------------
+    # 4. Clean legal provisions
+    # --------------------------------------------------------
+
+    print_stage(
+        "CLEAN FTA LEGAL PROVISIONS"
+    )
+
+    for agreement_key in agreement_keys:
+
+        clean_legal_agreement(
+            agreement_key
+        )
+
+    # --------------------------------------------------------
+    # 5. Clean origin rules
+    # --------------------------------------------------------
+
+    print_stage(
+        "CLEAN FTA ORIGIN RULES"
+    )
+
+    for agreement_key in agreement_keys:
+
+        clean_origin_agreement(
+            agreement_key
+        )
+
+    # --------------------------------------------------------
+    # 6. Clean historical tariff schedules
+    #
+    # Only agreements containing tariff_schedule
+    # in config are processed.
+    # --------------------------------------------------------
+
+    print_stage(
+        "CLEAN FTA TARIFF SCHEDULES"
+    )
+
+    for (
+        agreement_key,
+        agreement_config,
+    ) in fta_config.items():
+
+        if (
+            "tariff_schedule"
+            not in agreement_config
+        ):
+            continue
+
+        clean_tariff_agreement(
+            agreement_key
+        )
+
+    # --------------------------------------------------------
+    # 7. Load legal provisions
+    # --------------------------------------------------------
+
+    print_stage(
+        "LOAD FTA LEGAL PROVISIONS"
+    )
+
+    for agreement_key in agreement_keys:
+
+        load_legal_agreement(
+            agreement_key
+        )
+
+    # --------------------------------------------------------
+    # 8. Load origin rules
+    # --------------------------------------------------------
+
+    print_stage(
+        "LOAD FTA ORIGIN RULES"
+    )
+
+    for agreement_key in agreement_keys:
+
+        load_origin_agreement(
+            agreement_key
+        )
+
+    # --------------------------------------------------------
+    # 9. Load historical tariff schedules
+    # --------------------------------------------------------
+
+    print_stage(
+        "LOAD FTA TARIFF SCHEDULES"
+    )
+
+    for (
+        agreement_key,
+        agreement_config,
+    ) in fta_config.items():
+
+        if (
+            "tariff_schedule"
+            not in agreement_config
+        ):
+            continue
+
+        load_tariff_agreement(
+            agreement_key
+        )
+
+    # --------------------------------------------------------
+    # 10. Embed historical tariff lines
+    # --------------------------------------------------------
+
+    print_stage(
+        "EMBED FTA TARIFF LINES"
+    )
+
+    embed_tariff_lines()
+
+    # --------------------------------------------------------
+    # Complete
+    # --------------------------------------------------------
 
     print(
         "\nFTA ingestion pipeline completed.",

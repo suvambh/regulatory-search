@@ -1,45 +1,23 @@
-import json
-
-from regulatory_engine.infrastructure.bedrock import (
-    get_bedrock_client,
-)
 from regulatory_engine.infrastructure.database import (
     connect_db,
 )
-from regulatory_engine.settings import EMBEDDING_MODEL
-
-
-def vector_to_string(vector):
-    return "[" + ",".join(
-        str(x) for x in vector
-    ) + "]"
+from regulatory_engine.infrastructure.embeddings import (
+    embed_query,
+    vector_to_pg,
+)
 
 
 def retrieve_candidates(
     product,
     limit=5,
 ):
-    bedrock = get_bedrock_client()
-
-    response = bedrock.invoke_model(
-        modelId=EMBEDDING_MODEL,
-        body=json.dumps(
-            {
-                "texts": [product],
-                "input_type": "search_query",
-            }
-        ),
-    )
-
-    result = json.loads(
-        response["body"].read()
-    )
-
     query_embedding = (
-        result["embeddings"][0]
+        embed_query(
+            product
+        )
     )
 
-    vector = vector_to_string(
+    vector = vector_to_pg(
         query_embedding
     )
 

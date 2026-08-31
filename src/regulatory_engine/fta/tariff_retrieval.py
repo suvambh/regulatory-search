@@ -1,50 +1,10 @@
-import json
-
-from regulatory_engine.infrastructure.bedrock import (
-    get_bedrock_client,
-)
 from regulatory_engine.infrastructure.database import (
     connect_db,
 )
-from regulatory_engine.settings import (
-    EMBEDDING_MODEL,
+from regulatory_engine.infrastructure.embeddings import (
+    embed_query,
+    vector_to_pg,
 )
-
-
-def vector_to_string(vector):
-    return "[" + ",".join(
-        str(x)
-        for x in vector
-    ) + "]"
-
-
-def embed_query(
-    text: str,
-):
-    bedrock = get_bedrock_client()
-
-    response = bedrock.invoke_model(
-        modelId=EMBEDDING_MODEL,
-        body=json.dumps(
-            {
-                "texts": [
-                    text
-                ],
-                "input_type":
-                    "search_query",
-            }
-        ),
-    )
-
-    body = json.loads(
-        response[
-            "body"
-        ].read()
-    )
-
-    return body[
-        "embeddings"
-    ][0]
 
 
 def search_fta_tariff_lines(
@@ -55,11 +15,13 @@ def search_fta_tariff_lines(
 ):
     hs4_code = nc_code[:4]
 
-    query_embedding = embed_query(
-        product_description
+    query_embedding = (
+        embed_query(
+            product_description
+        )
     )
 
-    vector = vector_to_string(
+    vector = vector_to_pg(
         query_embedding
     )
 

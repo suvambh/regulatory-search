@@ -1,28 +1,12 @@
-import json
-
-import boto3
 import psycopg
 
+from regulatory_engine.infrastructure.embeddings import (
+    embed_document,
+    vector_to_pg,
+)
 from regulatory_engine.settings import (
-    AWS_REGION,
     DATABASE_URL,
-    EMBEDDING_MODEL,
 )
-
-
-bedrock = boto3.client(
-    "bedrock-runtime",
-    region_name=AWS_REGION,
-)
-
-
-def vector_to_string(
-    vector,
-):
-    return "[" + ",".join(
-        str(x)
-        for x in vector
-    ) + "]"
 
 
 def build_embedding_text(
@@ -141,34 +125,11 @@ def embed_tariff_lines(
                     )
                     continue
 
-                response = (
-                    bedrock.invoke_model(
-                        modelId=(
-                            EMBEDDING_MODEL
-                        ),
-                        body=json.dumps(
-                            {
-                                "texts": [
-                                    text
-                                ],
-                                "input_type":
-                                    "search_document",
-                                "truncate":
-                                    "END",
-                            }
-                        ),
+                embedding = (
+                    embed_document(
+                        text
                     )
                 )
-
-                body = json.loads(
-                    response[
-                        "body"
-                    ].read()
-                )
-
-                embedding = body[
-                    "embeddings"
-                ][0]
 
                 cur.execute(
                     """
@@ -177,7 +138,7 @@ def embed_tariff_lines(
                     WHERE id = %s
                     """,
                     (
-                        vector_to_string(
+                        vector_to_pg(
                             embedding
                         ),
                         row_id,

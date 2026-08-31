@@ -1,25 +1,12 @@
-import json
-
-import boto3
 import psycopg
 
+from regulatory_engine.infrastructure.embeddings import (
+    embed_document,
+    vector_to_pg,
+)
 from regulatory_engine.settings import (
-    AWS_REGION,
     EMBEDDING_MODEL,
 )
-
-
-bedrock = boto3.client(
-    "bedrock-runtime",
-    region_name=AWS_REGION,
-)
-
-
-def vector_to_string(vector):
-    return "[" + ",".join(
-        str(x)
-        for x in vector
-    ) + "]"
 
 
 def embed_tariff_items(
@@ -81,43 +68,10 @@ def embed_tariff_items(
                     f"{description}"
                 )
 
-                response = (
-                    bedrock.invoke_model(
-                        modelId=(
-                            EMBEDDING_MODEL
-                        ),
-                        body=json.dumps(
-                            {
-                                "texts": [
-                                    text
-                                ],
-                                "input_type": (
-                                    "search_document"
-                                ),
-                                "truncate": (
-                                    "END"
-                                ),
-                            }
-                        ),
-                        contentType=(
-                            "application/json"
-                        ),
-                        accept=(
-                            "application/json"
-                        ),
-                    )
-                )
-
-                result = json.loads(
-                    response[
-                        "body"
-                    ].read()
-                )
-
                 embedding = (
-                    result[
-                        "embeddings"
-                    ][0]
+                    embed_document(
+                        text
+                    )
                 )
 
                 cur.execute(
@@ -127,7 +81,7 @@ def embed_tariff_items(
                     WHERE id = %s
                     """,
                     (
-                        vector_to_string(
+                        vector_to_pg(
                             embedding
                         ),
                         row_id,

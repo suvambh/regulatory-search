@@ -1,0 +1,20 @@
+{
+  "document_code": "EU_NC_2024",
+  "source_document": "Nomenclature combinée 2024",
+  "pdf_path": "corpus/nc2024.pdf",
+  "raw_dir": "data/raw/nc",
+  "clean_dir": "data/cleaned/nc",
+  "pages": [
+    136,
+    604,
+    605,
+    622,
+    629,
+    630,
+    631,
+    641,
+    642,
+    677,
+    678
+  ]
+}

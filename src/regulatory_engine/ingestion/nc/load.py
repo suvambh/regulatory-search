@@ -1,8 +1,10 @@
 from pathlib import Path
 
 import pandas as pd
-import psycopg
 
+from regulatory_engine.infrastructure.database import (
+    connect_db,
+)
 from regulatory_engine.infrastructure.storage import (
     ensure_local_file,
 )
@@ -116,12 +118,12 @@ def parse_bool(value):
 
 
 def load_csv_files(
-    csv_paths: list[Path],
-    db_url: str,
+    csv_paths,
+    db_url: str | None = None,
 ):
     processed = 0
 
-    with psycopg.connect(
+    with connect_db(
         db_url
     ) as conn:
 

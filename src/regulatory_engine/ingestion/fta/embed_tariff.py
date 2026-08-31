@@ -1,5 +1,6 @@
-import psycopg
-
+from regulatory_engine.infrastructure.database import (
+    connect_db,
+)
 from regulatory_engine.infrastructure.embeddings import (
     embed_document,
     vector_to_pg,
@@ -62,7 +63,7 @@ def embed_tariff_lines(
     db_url: str = DATABASE_URL,
 ):
 
-    with psycopg.connect(
+    with connect_db(
         db_url
     ) as conn:
 

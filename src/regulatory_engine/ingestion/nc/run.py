@@ -1,86 +1,133 @@
 from pathlib import Path
 
-from regulatory_engine.ingestion.nc.clean import clean_pages
-from regulatory_engine.ingestion.nc.embed import embed_tariff_items
-from regulatory_engine.ingestion.nc.extract import extract_pages
-from regulatory_engine.ingestion.nc.load import load_csv_files
 from regulatory_engine.infrastructure.migrations import (
     run_migrations,
 )
-from regulatory_engine.settings import DATABASE_URL
-
-
-PDF_PATH = Path(
-    "corpus/nc2024.pdf"
+from regulatory_engine.ingestion.nc.clean import (
+    clean_pages,
 )
-
-RAW_DIR = Path(
-    "data/raw/nc"
+from regulatory_engine.ingestion.nc.config import (
+    load_nc_config,
 )
-
-CLEANED_DIR = Path(
-    "data/cleaned/nc"
+from regulatory_engine.ingestion.nc.embed import (
+    embed_tariff_items,
 )
-
-SOURCE_DOCUMENT = (
-    "Nomenclature combinée 2024"
+from regulatory_engine.ingestion.nc.extract import (
+    extract_pages,
 )
-
-
-PAGE_NUMBERS = [
-    136,  # 1509 20 00 - extra virgin olive oil
-    604,
-    605,
-    622,  # 8507 60 00 - lithium-ion accumulators
-    629,
-    630,
-    631,
-    641,
-    642,
-    677,  # 9018 19 10 - pulse oximeter
-    678,  # 9021 31 00 - joint prostheses
-]
+from regulatory_engine.ingestion.nc.load import (
+    load_csv_files,
+)
 
 
 def main():
+
+    config = load_nc_config()
+
+    pdf_path = Path(
+        config[
+            "pdf_path"
+        ]
+    )
+
+    raw_dir = Path(
+        config[
+            "raw_dir"
+        ]
+    )
+
+    cleaned_dir = Path(
+        config[
+            "clean_dir"
+        ]
+    )
+
+    page_numbers = [
+        int(page)
+        for page
+        in config[
+            "pages"
+        ]
+    ]
+
+    source_document = config[
+        "source_document"
+    ]
+
+    # --------------------------------------------------------
+    # Database
+    # --------------------------------------------------------
 
     print(
         "\n--- DATABASE MIGRATIONS ---"
     )
 
     run_migrations()
- 
-    print("\n--- EXTRACT ---")
+
+    # --------------------------------------------------------
+    # Extract
+    # --------------------------------------------------------
+
+    print(
+        "\n--- EXTRACT ---"
+    )
 
     extract_pages(
-        pdf_path=PDF_PATH,
-        page_numbers=PAGE_NUMBERS,
-        output_dir=RAW_DIR,
+        pdf_path=pdf_path,
+        page_numbers=page_numbers,
+        output_dir=raw_dir,
     )
 
-    print("\n--- CLEAN ---")
+    # --------------------------------------------------------
+    # Clean
+    # --------------------------------------------------------
 
-    cleaned_files = clean_pages(
-        page_numbers=PAGE_NUMBERS,
-        input_dir=RAW_DIR,
-        output_dir=CLEANED_DIR,
-        source_document=SOURCE_DOCUMENT,
+    print(
+        "\n--- CLEAN ---"
     )
 
-    print("\n--- LOAD ---")
+    cleaned_files = (
+        clean_pages(
+            page_numbers=(
+                page_numbers
+            ),
+            input_dir=(
+                raw_dir
+            ),
+            output_dir=(
+                cleaned_dir
+            ),
+            source_document=(
+                source_document
+            ),
+        )
+    )
+
+    # --------------------------------------------------------
+    # Load
+    # --------------------------------------------------------
+
+    print(
+        "\n--- LOAD ---"
+    )
 
     load_csv_files(
         csv_paths=cleaned_files,
-        db_url=DATABASE_URL,
     )
 
-    print("\n--- EMBED ---")
+    # --------------------------------------------------------
+    # Embed
+    # --------------------------------------------------------
 
-    embed_tariff_items(
-        db_url=DATABASE_URL,
+    print(
+        "\n--- EMBED ---"
     )
 
-    print("\nPipeline completed")
+    embed_tariff_items()
+
+    print(
+        "\nPipeline completed"
+    )
 
 
 if __name__ == "__main__":

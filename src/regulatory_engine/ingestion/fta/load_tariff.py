@@ -2,8 +2,9 @@ from pathlib import Path
 import argparse
 import csv
 
-import psycopg
-
+from regulatory_engine.infrastructure.database import (
+    connect_db,
+)
 from regulatory_engine.fta.config import (
     load_fta_config,
     get_agreement_config,
@@ -82,7 +83,7 @@ def load_tariff_lines(
 
     processed = 0
 
-    with psycopg.connect(
+    with connect_db(
         DATABASE_URL
     ) as conn:
 

@@ -1,5 +1,3 @@
-import psycopg
-
 from regulatory_engine.infrastructure.embeddings import (
     embed_document,
     vector_to_pg,
@@ -8,11 +6,14 @@ from regulatory_engine.settings import (
     EMBEDDING_MODEL,
 )
 
+from regulatory_engine.infrastructure.database import (
+    connect_db,
+)
 
 def embed_tariff_items(
-    db_url: str,
+    db_url: str | None = None,
 ):
-    with psycopg.connect(
+    with connect_db(
         db_url
     ) as conn:
 

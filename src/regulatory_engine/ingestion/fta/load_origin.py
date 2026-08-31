@@ -2,7 +2,6 @@ from pathlib import Path
 import argparse
 
 import pandas as pd
-import psycopg
 
 from regulatory_engine.settings import DATABASE_URL
 
@@ -14,6 +13,9 @@ from regulatory_engine.infrastructure.storage import (
     ensure_local_file,
 )
 
+from regulatory_engine.infrastructure.database import (
+    connect_db,
+)
 
 def optional_text(value):
     if value is None:
@@ -64,7 +66,7 @@ def load_origin_rules(
 
     processed = 0
 
-    with psycopg.connect(
+    with connect_db(
         db_url
     ) as conn:
 

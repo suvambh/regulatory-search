@@ -1,5 +1,3 @@
-import psycopg
-
 from regulatory_engine.infrastructure.database import (
     connect_db,
 )
@@ -15,14 +13,12 @@ def get_tariff_item(
     Vector search is deliberately not used here.
     """
 
-    connection = (
-        psycopg.connect(db_url)
-        if db_url is not None
-        else connect_db()
-    )
+    with connect_db(
+        db_url
+    ) as conn:
 
-    with connection as conn:
         with conn.cursor() as cur:
+
             cur.execute(
                 """
                 SELECT
@@ -38,7 +34,9 @@ def get_tariff_item(
                 FROM tariff_items
                 WHERE nc_code = %s
                 """,
-                (nc_code,),
+                (
+                    nc_code,
+                ),
             )
 
             row = cur.fetchone()

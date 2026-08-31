@@ -2,9 +2,12 @@ from pathlib import Path
 import argparse
 
 import pandas as pd
-import psycopg
 
 from regulatory_engine.settings import DATABASE_URL
+
+from regulatory_engine.infrastructure.database import (
+    connect_db,
+)
 
 from regulatory_engine.fta.config import (
     load_fta_config,
@@ -52,7 +55,7 @@ def load_legal_chunks(
 
     processed = 0
 
-    with psycopg.connect(
+    with connect_db(
         db_url
     ) as conn:
 

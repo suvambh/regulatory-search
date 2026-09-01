@@ -1,0 +1,44 @@
+{
+  "medical_mdr": {
+    "document_code": "EU_MDR_2017_745",
+    "document_name": "Règlement (UE) 2017/745",
+    "pdf_path": "corpus/medical.pdf",
+    "raw_dir": "data/raw/medical/mdr",
+    "clean_dir": "data/cleaned/medical/mdr",
+    
+    "definitions": {
+      "pages": [15, 16],
+      "articles": []
+    },
+
+    "ce_marking": {
+      "pages": [32, 33],
+      "articles": ["19", "20", "21"]
+    },
+
+    "classification_basis": {
+      "pages": [49,50],
+      "articles": ["51"]
+    },
+
+    "conformity": {
+      "pages": [50, 51, 52, 53],
+      "articles": ["52", "53", "54"]
+    },
+
+    "technical_documentation": {
+      "pages": [108],
+      "source_section": "Annexe II"
+    },
+
+    "declaration_of_conformity": {
+      "pages": [113],
+      "source_section": "Annexe IV"
+    },
+
+    "classification_rules": {
+      "pages": [140, 141, 142, 143, 144, 145],
+      "source_section": "Annexe VIII — Règles de classification"
+    }
+  }
+}

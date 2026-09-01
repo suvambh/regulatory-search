@@ -11,6 +11,9 @@ from regulatory_engine.tariff.calculator import (
     calculate_standard_tariff,
 )
 
+from regulatory_engine.medical import (
+    evaluate_medical_regulation,
+)
 
 # ============================================================
 # NC candidate helpers
@@ -552,6 +555,46 @@ def build_uncertain_standard_tariff(
 # Core evaluation
 # ============================================================
 
+def should_evaluate_medical_regulation(
+    classification,
+    candidates,
+):
+    """
+    Narrow prototype trigger for MDR analysis.
+
+    Chapter 90 is used only to decide whether to run
+    the medical regulatory service.
+
+    It is NOT treated as evidence that MDR applies.
+    MDR applicability is decided by the medical
+    service itself.
+    """
+
+    if (
+        classification.get("status")
+        == "SUPPORTED"
+        and classification.get("nc_code")
+    ):
+        return str(
+            classification["nc_code"]
+        ).startswith("90")
+
+    if (
+        classification.get("status")
+        == "UNCERTAIN_CLASSIFICATION"
+    ):
+        common_hs4 = (
+            find_common_candidate_hs4(
+                candidates
+            )
+        )
+
+        if common_hs4:
+            return str(
+                common_hs4
+            ).startswith("90")
+
+    return False
 
 def _evaluate_input(
     scenario_input,
@@ -579,7 +622,7 @@ def _evaluate_input(
 
     tariff = None
     preferential_tariff = None
-
+    medical_regulation = None
     # --------------------------------------------------------
     # 2A. Exact NC classification
     # --------------------------------------------------------
@@ -719,6 +762,24 @@ def _evaluate_input(
             )
 
     # --------------------------------------------------------
+# 3. Medical regulatory analysis
+#
+# Prototype scope:
+# run MDR analysis only for relevant Chapter 90
+# customs classifications.
+# --------------------------------------------------------
+
+    if should_evaluate_medical_regulation(
+        classification,
+        candidates,
+    ):
+        medical_regulation = (
+            evaluate_medical_regulation(
+                product
+            )
+        )
+
+    # --------------------------------------------------------
     # Response
     # --------------------------------------------------------
 
@@ -731,6 +792,9 @@ def _evaluate_input(
 
         "preferential_tariff":
             preferential_tariff,
+
+        "medical_regulation":
+            medical_regulation,
 
         "candidates": [
             {
@@ -766,7 +830,7 @@ def evaluate_import(
     Main public interface of the regulatory engine.
 
     User-facing field names follow the terminology
-    of the interview problem statement.
+    of the problem statement.
     """
 
     scenario_input = {

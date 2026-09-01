@@ -135,8 +135,6 @@ def evaluate_scenario(
                 "name"
             ],
 
-        # Preserve the existing scenario result
-        # structure for regression comparison.
         "input":
             scenario[
                 "input"
@@ -156,6 +154,11 @@ def evaluate_scenario(
             result[
                 "preferential_tariff"
             ],
+
+        "medical_regulation":
+            result.get(
+                "medical_regulation"
+            ),
 
         "candidates":
             result[
@@ -238,6 +241,11 @@ def main():
                         "preferential_tariff":
                             result[
                                 "preferential_tariff"
+                            ],
+
+                        "medical_regulation":
+                            result[
+                                "medical_regulation"
                             ],
                     },
                     indent=2,
